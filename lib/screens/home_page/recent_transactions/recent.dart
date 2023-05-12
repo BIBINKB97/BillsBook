@@ -94,19 +94,19 @@ class _RecentState extends State<Recent> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.15,
+                          height: MediaQuery.of(context).size.height * 0.11,
                         ),
                         ColorFiltered(
                           colorFilter:
                               ColorFilter.mode(Colors.black, BlendMode.srcIn),
                           child: Lottie.asset(
                             'images/noresults.json',
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            height: MediaQuery.of(context).size.height * 0.1,
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: MediaQuery.of(context).size.height * 0.15,
                           ),
                         ),
                         Text(
-                          "   No transactions yet !",
+                          "  No transactions yet !",
                           style: TextStyle(
                             fontSize: 25,
                             color: Colors.grey,

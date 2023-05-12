@@ -323,6 +323,10 @@ class _TransactionListState extends State<TransactionList> {
                         : Center(
                             child: Column(
                               children: [
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                ),
                                 ColorFiltered(
                                   colorFilter: ColorFilter.mode(
                                       Colors.black, BlendMode.srcIn),
@@ -338,7 +342,7 @@ class _TransactionListState extends State<TransactionList> {
                                   "   No transactions yet !",
                                   style: TextStyle(
                                       fontSize: 30,
-                                      color: Color.fromARGB(140, 151, 52, 184),
+                                      color: Colors.black54,
                                       fontWeight: FontWeight.w600),
                                 ),
                               ],

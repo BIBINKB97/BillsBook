@@ -24,7 +24,7 @@ class _AddTransactionState extends State<AddTransaction> {
   final _amountTextEditingController = TextEditingController();
   final _descriptionTextEditingController = TextEditingController();
   CategoryDB categoryDB = CategoryDB();
-  @override
+
   void inistate() {
     _selectedCategorytype = CategoryType.income;
     super.initState();

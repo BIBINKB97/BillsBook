@@ -189,11 +189,10 @@ class _FinancialReportState extends State<FinancialReport>
                                       ),
                                     ),
                                     Text(
-                                      "  No transactions yet !",
+                                      "   No transactions yet !",
                                       style: TextStyle(
                                           fontSize: 30,
-                                          color:
-                                              Color.fromARGB(140, 151, 52, 184),
+                                          color: Colors.black54,
                                           fontWeight: FontWeight.w600),
                                     ),
                                   ],
@@ -246,11 +245,10 @@ class _FinancialReportState extends State<FinancialReport>
                                       ),
                                     ),
                                     Text(
-                                      "  No transactions yet !",
+                                      "   No transactions yet !",
                                       style: TextStyle(
                                           fontSize: 30,
-                                          color:
-                                              Color.fromARGB(140, 151, 52, 184),
+                                          color: Colors.black54,
                                           fontWeight: FontWeight.w600),
                                     ),
                                   ],
@@ -291,7 +289,6 @@ class _FinancialReportState extends State<FinancialReport>
                         ),
                         child: chartdivertFunctionExpense().isEmpty
                             ? Column(
-                               
                                 children: [
                                   ColorFiltered(
                                     colorFilter: ColorFilter.mode(
@@ -303,11 +300,10 @@ class _FinancialReportState extends State<FinancialReport>
                                     ),
                                   ),
                                   Text(
-                                    "  No transactions yet !",
+                                    "   No transactions yet !",
                                     style: TextStyle(
                                         fontSize: 30,
-                                        color:
-                                            Color.fromARGB(140, 151, 52, 184),
+                                        color: Colors.black54,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ],
