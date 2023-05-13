@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:money_management_project/screens/home_page/balance/balance.dart';
-import 'package:money_management_project/database/transactions_db/add_transactions_db.dart';
+import 'package:money_management_project/database/transactions_db/transactions_db.dart';
 import 'package:money_management_project/screens/home_page/recent_transactions/recent.dart';
 import 'package:money_management_project/screens/transaction_list/all_transactions/transaction_list.dart';
 
@@ -154,7 +154,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.06,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.4,

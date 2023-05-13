@@ -3,19 +3,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:money_management_project/database/profile_db/profile_db.dart';
 
-class MyAccount extends StatelessWidget {
-  final String name;
-  final String age;
-  final String number;
-  final String photo;
+class MyAccount extends StatefulWidget {
+  const MyAccount({super.key});
 
-  const MyAccount(
-      {required this.photo,
-      required this.name,
-      required this.age,
-      required this.number,
-      super.key});
+  @override
+  State<MyAccount> createState() => _MyAccountState();
+}
 
+class _MyAccountState extends State<MyAccount> {
+  @override
   @override
   Widget build(BuildContext context) {
     getUser();
@@ -34,7 +30,7 @@ class MyAccount extends StatelessWidget {
         body: SingleChildScrollView(
             child: Column(children: [
           Container(
-              height: 800,
+              height: MediaQuery.of(context).size.height * 0.9,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(30),
@@ -59,17 +55,17 @@ class MyAccount extends StatelessWidget {
                       ),
                       CircleAvatar(
                         radius: 90,
-                        backgroundImage: FileImage(File(photo)),
+                        backgroundImage: FileImage(File(userData!.photo)),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: MediaQuery.of(context).size.height * 0.05,
                       ),
                       Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white),
-                        height: 300,
-                        width: 350,
+                        width: MediaQuery.of(context).size.width * 0.86,
+                        height: MediaQuery.of(context).size.height * 0.35,
                         child: Column(
                           children: [
                             Padding(
@@ -89,7 +85,7 @@ class MyAccount extends StatelessWidget {
                                           fontWeight: FontWeight.w500),
                                       children: <TextSpan>[
                                         TextSpan(
-                                            text: name,
+                                            text: userData?.name,
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     200, 151, 52, 184),
@@ -115,7 +111,7 @@ class MyAccount extends StatelessWidget {
                                           fontWeight: FontWeight.w500),
                                       children: <TextSpan>[
                                         TextSpan(
-                                            text: age,
+                                            text: userData?.age,
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     200, 151, 52, 184),
@@ -141,7 +137,7 @@ class MyAccount extends StatelessWidget {
                                           fontWeight: FontWeight.w500),
                                       children: <TextSpan>[
                                         TextSpan(
-                                            text: number,
+                                            text: userData?.number,
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     200, 151, 52, 184),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:money_management_project/database/category_db/category_db.dart';
-import 'package:money_management_project/database/transactions_db/add_transactions_db.dart';
+import 'package:money_management_project/database/transactions_db/transactions_db.dart';
 
 import 'package:money_management_project/model/category_model/category_model.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';

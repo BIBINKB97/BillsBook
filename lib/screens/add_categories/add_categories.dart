@@ -31,9 +31,10 @@ class _AddCategoriesState extends State<AddCategories> {
         ),
         toolbarHeight: 70,
         elevation: 1,
-        backgroundColor: Color.fromARGB(210, 151, 52, 184),
+        backgroundColor: Color.fromARGB(200, 151, 52, 184),
       ),
       floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         onPressed: () {
           showCategoryAddPopup(context);
         },
@@ -49,11 +50,8 @@ class _AddCategoriesState extends State<AddCategories> {
         child: SingleChildScrollView(
             child: Column(children: [
           Container(
-              height: 800,
+              height: MediaQuery.of(context).size.height * 0.9,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -64,14 +62,13 @@ class _AddCategoriesState extends State<AddCategories> {
                 ),
               ),
               child: SafeArea(
-                  child: Column(children: const [
+                  child: Column(children: [
                 SizedBox(
-                  height: 20,
+                  height: MediaQuery.of(context).size.height * 0.009,
                 ),
                 TabBar(
-                    
                     indicatorColor: Color.fromRGBO(151, 52, 184, 0.784),
-                    tabs: [
+                    tabs: const [
                       Tab(
                         child: Text(
                           'Income',
@@ -88,8 +85,11 @@ class _AddCategoriesState extends State<AddCategories> {
                       ),
                     ]),
                 Expanded(
-                    child: TabBarView(children: [
-                  IncomeCategoryList(),
+                    child: TabBarView(children:  const [
+                      
+           
+
+          IncomeCategoryList(),
                   ExpenseCategoryList(),
                 ]))
               ]))),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:money_management_project/screens/add_transactions/add_transactions.dart';
 import 'package:money_management_project/screens/home_page/home_page.dart';
 import 'package:money_management_project/screens/profile_page/profile.dart';
@@ -24,33 +25,33 @@ class _BottomNavState extends State<BottomNav> {
   final List<BottomNavigationBarItem> _bottomNavbarItems = [
     BottomNavigationBarItem(
       icon: Icon(
-        Icons.home,
+        IconlyBold.home,
       ),
       label: 'Home',
     ),
     BottomNavigationBarItem(
       icon: Icon(
         Icons.compare_arrows,
+        size: 40,
       ),
       label: 'Transactions',
     ),
     BottomNavigationBarItem(
       icon: Icon(
-        Icons.add_circle_outline,
+        IconlyBold.plus,
         size: 35,
       ),
       label: 'Add Transaction',
     ),
     BottomNavigationBarItem(
-       
       icon: Icon(
-        Icons.donut_small,
+        IconlyBold.graph,
       ),
       label: 'Statitics',
     ),
     BottomNavigationBarItem(
       icon: Icon(
-        Icons.person,
+        IconlyBold.profile,
       ),
       label: 'Profile',
     ),
@@ -59,7 +60,6 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       
       body: screens[selectedIndex],
       bottomNavigationBar: SizedBox(
         height: 90,

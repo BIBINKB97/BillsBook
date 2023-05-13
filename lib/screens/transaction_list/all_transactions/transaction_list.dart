@@ -3,7 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:money_management_project/database/category_db/category_db.dart';
-import 'package:money_management_project/database/transactions_db/add_transactions_db.dart';
+import 'package:money_management_project/database/transactions_db/transactions_db.dart';
 import 'package:money_management_project/model/category_model/category_model.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
 import 'package:money_management_project/screens/transaction_list/edit_and_view_details/detailed_view_of_transaction.dart';
@@ -94,7 +94,7 @@ class _TransactionListState extends State<TransactionList> {
               ],
             ),
             body: Container(
-              height: MediaQuery.of(context).size.height * 0.8,
+              height: MediaQuery.of(context).size.height * 0.9 ,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,

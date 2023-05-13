@@ -37,8 +37,7 @@ class _FinancialReportState extends State<FinancialReport>
     tabController = TabController(length: 3, vsync: this);
 
     filterFunction();
-    chartdivertFunctionExpense();
-    chartdivertFunctionIncome();
+  
     super.initState();
   }
 
@@ -189,7 +188,7 @@ class _FinancialReportState extends State<FinancialReport>
                                       ),
                                     ),
                                     Text(
-                                      "   No transactions yet !",
+                                      "No transactions yet!",
                                       style: TextStyle(
                                           fontSize: 30,
                                           color: Colors.black54,
@@ -245,7 +244,7 @@ class _FinancialReportState extends State<FinancialReport>
                                       ),
                                     ),
                                     Text(
-                                      "   No transactions yet !",
+                                      "No transactions yet!",
                                       style: TextStyle(
                                           fontSize: 30,
                                           color: Colors.black54,
@@ -300,7 +299,7 @@ class _FinancialReportState extends State<FinancialReport>
                                     ),
                                   ),
                                   Text(
-                                    "   No transactions yet !",
+                                    "No transactions yet!",
                                     style: TextStyle(
                                         fontSize: 30,
                                         color: Colors.black54,

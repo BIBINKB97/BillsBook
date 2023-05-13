@@ -1,7 +1,8 @@
+import 'dart:io';
 import 'package:hive/hive.dart';
 part 'user_model.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 4)
 class UserModel {
   @HiveField(0)
   int? id;
@@ -13,5 +14,10 @@ class UserModel {
   final String age;
   @HiveField(4)
   final String number;
-  UserModel({required this.photo, required this.name, required this.age, required this.number,this.id});
+  UserModel(
+      {required this.photo,
+      required this.name,
+      required this.age,
+      required this.number,
+      this.id = 0});
 }

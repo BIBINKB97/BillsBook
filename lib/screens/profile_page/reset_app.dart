@@ -40,11 +40,10 @@ class ResetPage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: 100,
+                  height: MediaQuery.of(context).size.height * 0.22,
                 ),
                 SizedBox(
-                  height: 120,
-                  width: 120,
+                  height: MediaQuery.of(context).size.height * 0.15,
                   child: Lottie.asset('images/reset.json'),
                 ),
                 SizedBox(height: 20),
@@ -105,7 +104,9 @@ class ResetPage extends StatelessWidget {
                                         },
                                         child: Text(
                                           'No',
-                                          style: TextStyle(fontSize: 18),
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.green),
                                         )),
                                     TextButton(
                                         onPressed: () async {
@@ -146,7 +147,7 @@ class ResetPage extends StatelessWidget {
                               });
                         },
                         child: Text(
-                          'Reset',
+                          'Reset ',
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 20,

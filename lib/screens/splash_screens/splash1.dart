@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:money_management_project/database/chart_db/chart_db.dart';
+import 'package:money_management_project/database/profile_db/profile_db.dart';
 import 'package:money_management_project/screens/home_page/bottom_nav/bottom_nav.dart';
 import 'package:money_management_project/screens/splash_screens/splash2.dart';
 
@@ -68,7 +70,9 @@ class Splash1 extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8))),
               color: Color.fromARGB(210, 151, 52, 184),
-              onPressed: () {
+              onPressed: () async {
+                await filterFunction();
+                await getUser();
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => Splash2()));
               },

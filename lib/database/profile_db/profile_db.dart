@@ -2,23 +2,21 @@ import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:money_management_project/model/profile_model/user_model.dart';
 
+UserModel? userData;
 ValueNotifier<List<UserModel>> userListNotifier = ValueNotifier([]);
-
+int userDbId = 0;
 Future<void> addUser(UserModel value) async {
   final userDB = await Hive.openBox<UserModel>('UserDb');
-   userDB.put(value.id,value);
-  
+  await userDB.put(userDbId, value);
+  getUser();
 }
 
-Future<void> getUser() async {
-  final userDB = await Hive.openBox<UserModel>('userDb');
-  userListNotifier.value.clear();
-  userListNotifier.value.addAll(userDB.values);
-  userListNotifier.notifyListeners();
-}
-
-Future<void> editUser(UserModel model) async {
+Future getUser() async {
   final userDB = await Hive.openBox<UserModel>('UserDb');
-   await userDB.put(model.id,model);
+  userData = await userDB.get(userDbId);
+}
 
+Future<void> editUser(UserModel updatedValue) async {
+  final userDB = await Hive.openBox<UserModel>('UserDb');
+  await userDB.put(userDbId, updatedValue);
 }

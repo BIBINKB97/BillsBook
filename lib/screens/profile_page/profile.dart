@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
+import 'package:money_management_project/database/profile_db/profile_db.dart';
 import 'package:money_management_project/screens/profile_page/Edit_profile.dart';
-import 'package:money_management_project/screens/profile_page/about_us.dart';
+import 'package:money_management_project/screens/profile_page/about.dart';
 import 'package:money_management_project/screens/profile_page/my_account.dart';
 import 'package:money_management_project/screens/profile_page/privacy_policy.dart';
 import 'package:money_management_project/screens/profile_page/reset_app.dart';
@@ -57,7 +61,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         Container(
                           width: width * 0.84,
-                          height: height * 0.16,
+                          height: height * 0.17,
                           decoration: BoxDecoration(
                               color: Color.fromRGBO(254, 250, 255, 1),
                               borderRadius:
@@ -66,16 +70,20 @@ class _ProfileState extends State<Profile> {
                             children: [
                               Padding(
                                 padding: EdgeInsets.only(left: 25),
-                                child: CircleAvatar(
-                                  radius: 45,
-                                  backgroundImage:
-                                      AssetImage("images/user.png"),
-                                ),
+                                child: userData?.photo == null
+                                    ? CircleAvatar(
+                                        radius: 45,
+                                        backgroundImage:
+                                            AssetImage("images/user.png"))
+                                    : CircleAvatar(
+                                        radius: 45,
+                                        backgroundImage:
+                                            FileImage(File(userData!.photo))),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(left: 25, top: 45),
                                 child: Column(
-                                  children: const [
+                                  children: [
                                     Text(
                                       "User Name",
                                       style: TextStyle(
@@ -88,7 +96,7 @@ class _ProfileState extends State<Profile> {
                                       height: 15,
                                     ),
                                     Text(
-                                      "Bibin K B",
+                                      userData?.name ?? 'User Unknown',
                                       style: TextStyle(
                                           fontSize: 25,
                                           fontWeight: FontWeight.w700),
@@ -114,7 +122,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         Container(
                           width: width * 0.84,
-                          height: height * 0.5,
+                          height: height * 0.53,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius:
@@ -124,9 +132,15 @@ class _ProfileState extends State<Profile> {
                               Padding(
                                 padding: EdgeInsets.only(left: 20, top: 30),
                                 child: ListTile(
-                                  onTap: () {},
+                                  onTap: () async {
+                                    await getUser();
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) => MyAccount(),
+                                    ));
+                                  },
                                   leading: Icon(
-                                    Icons.person,
+                                    Icons.account_circle,
                                     color: Color.fromARGB(210, 151, 52, 184),
                                     size: 35,
                                   ),
@@ -171,7 +185,7 @@ class _ProfileState extends State<Profile> {
                                     ));
                                   },
                                   leading: Icon(
-                                    Icons.newspaper_rounded,
+                                    IconlyBold.document,
                                     color: Color.fromARGB(210, 151, 52, 184),
                                     size: 35,
                                   ),
@@ -193,12 +207,12 @@ class _ProfileState extends State<Profile> {
                                     ));
                                   },
                                   leading: Icon(
-                                    Icons.group,
+                                    Icons.android_rounded,
                                     color: Color.fromARGB(210, 151, 52, 184),
                                     size: 35,
                                   ),
                                   title: Text(
-                                    'About Us',
+                                    'About',
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),

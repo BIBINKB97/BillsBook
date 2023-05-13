@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
-import 'package:money_management_project/database/transactions_db/add_transactions_db.dart';
+import 'package:money_management_project/database/transactions_db/transactions_db.dart';
 import 'package:money_management_project/model/category_model/category_model.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
 import 'package:money_management_project/screens/transaction_list/edit_and_view_details/detailed_view_of_transaction.dart';
@@ -108,9 +108,9 @@ class _RecentState extends State<Recent> {
                         Text(
                           "  No transactions yet !",
                           style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.grey,
-                          ),
+                              fontSize: 25,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),

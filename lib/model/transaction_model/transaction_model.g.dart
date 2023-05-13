@@ -22,7 +22,8 @@ class TransactionModelAdapter extends TypeAdapter<TransactionModel> {
       category: fields[2] as CategoryModel,
       description: fields[3] as String,
       date: fields[4] as DateTime,
-    )..id = fields[5] as int?;
+      id: fields[5] as int?,
+    );
   }
 
   @override

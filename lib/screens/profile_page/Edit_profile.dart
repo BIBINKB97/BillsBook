@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:money_management_project/database/profile_db/profile_db.dart';
 import 'package:money_management_project/model/profile_model/user_model.dart';
-import 'package:money_management_project/screens/profile_page/my_account.dart';
+import 'package:money_management_project/screens/profile_page/profile.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -36,7 +36,7 @@ class _EditProfileState extends State<EditProfile> {
         body: SingleChildScrollView(
             child: Column(children: [
           Container(
-              height: 800,
+              height: MediaQuery.of(context).size.height * 0.9,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(30),
@@ -53,7 +53,7 @@ class _EditProfileState extends State<EditProfile> {
               child: ListView(children: [
                 Column(children: [
                   SizedBox(
-                    height: 30,
+                    height: MediaQuery.of(context).size.height * 0.05,
                   ),
                   _photo?.path == null
                       ? CircleAvatar(
@@ -68,7 +68,7 @@ class _EditProfileState extends State<EditProfile> {
                         )
                 ]),
                 SizedBox(
-                  height: 20,
+                  height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 Center(
                   child: ElevatedButton(
@@ -82,11 +82,11 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: MediaQuery.of(context).size.height * 0.02,
                 ),
                 Center(
                   child: SizedBox(
-                    width: 350,
+                    width: MediaQuery.of(context).size.width * 0.88,
                     child: Column(
                       children: [
                         TextFormField(
@@ -98,7 +98,7 @@ class _EditProfileState extends State<EditProfile> {
                                       BorderRadius.all(Radius.circular(15)))),
                         ),
                         SizedBox(
-                          height: 25,
+                          height: MediaQuery.of(context).size.height * 0.031,
                         ),
                         TextFormField(
                           controller: _ageOfUser,
@@ -111,7 +111,7 @@ class _EditProfileState extends State<EditProfile> {
                                       BorderRadius.all(Radius.circular(15)))),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: MediaQuery.of(context).size.height * 0.013,
                         ),
                         TextFormField(
                           controller: _numberOfUser,
@@ -124,7 +124,7 @@ class _EditProfileState extends State<EditProfile> {
                                       BorderRadius.all(Radius.circular(15)))),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         ElevatedButton(
                           onPressed: () {
@@ -151,25 +151,25 @@ class _EditProfileState extends State<EditProfile> {
     final age = _ageOfUser.text.toString();
     final number = _numberOfUser.text.toString();
 
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   SnackBar(
-    //     behavior: SnackBarBehavior.floating,
-    //     margin: EdgeInsets.all(40),
-    //     content: Text(
-    //       "Details added Successfully",
-    //       textAlign: TextAlign.center,
-    //     ),
-    //     backgroundColor: Colors.blue.shade300,
-    //   ),
-    // );
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.all(40),
+        content: Text(
+          "Details added Successfully !",
+          style: TextStyle(fontSize: 20),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Colors.green,
+      ),
+    );
 
-    stdout.write('$name $age $number');
     final user =
         UserModel(photo: _photo!.path, name: name, age: age, number: number);
-    addUser(user);
+    await addUser(user);
+
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) =>
-          MyAccount(photo: _photo!.path, name: name, age: age, number: number),
+      builder: (context) => Profile(),
     ));
   }
 
