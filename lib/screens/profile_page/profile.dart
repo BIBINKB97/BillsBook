@@ -1,6 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:money_management_project/database/profile_db/profile_db.dart';
 import 'package:money_management_project/screens/profile_page/Edit_profile.dart';
@@ -81,31 +81,19 @@ class _ProfileState extends State<Profile> {
                                             FileImage(File(userData!.photo))),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 25, top: 45),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "User Name",
-                                      style: TextStyle(
-                                          color:
-                                              Color.fromARGB(210, 151, 52, 184),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    Text(
-                                      userData?.name ?? 'User Unknown',
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.w700),
-                                    )
-                                  ],
+                                padding: EdgeInsets.only(left: 15),
+                                child: SizedBox(
+                                  width: width * 0.35,
+                                  child: Text(
+                                    userData?.name ?? 'Edit Profile',
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w700),
+                                  ),
                                 ),
                               ),
                               Padding(
-                                  padding: EdgeInsets.only(left: 40),
+                                  padding: EdgeInsets.only(left: 05),
                                   child: IconButton(
                                       onPressed: () {
                                         Navigator.of(context).push(
@@ -134,10 +122,18 @@ class _ProfileState extends State<Profile> {
                                 child: ListTile(
                                   onTap: () async {
                                     await getUser();
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                      builder: (context) => MyAccount(),
-                                    ));
+                                    if (userData == null) {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => EditProfile(),
+                                          ));
+                                    } else {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) => MyAccount(),
+                                      ));
+                                    }
                                   },
                                   leading: Icon(
                                     Icons.account_circle,

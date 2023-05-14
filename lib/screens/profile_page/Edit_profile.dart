@@ -4,7 +4,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:money_management_project/database/profile_db/profile_db.dart';
 import 'package:money_management_project/model/profile_model/user_model.dart';
-import 'package:money_management_project/screens/profile_page/profile.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -129,6 +128,7 @@ class _EditProfileState extends State<EditProfile> {
                         ElevatedButton(
                           onPressed: () {
                             onSaveButton();
+                            getUser();
                           },
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
@@ -150,27 +150,36 @@ class _EditProfileState extends State<EditProfile> {
     final name = _nameOfUser.text.toString();
     final age = _ageOfUser.text.toString();
     final number = _numberOfUser.text.toString();
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        behavior: SnackBarBehavior.floating,
-        margin: EdgeInsets.all(40),
-        content: Text(
-          "Details added Successfully !",
-          style: TextStyle(fontSize: 20),
-          textAlign: TextAlign.center,
+    if (name.isEmpty || age.isEmpty || number.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: Text(
+            "Please fill in all fields !",
+            style: TextStyle(fontSize: 20),
+            textAlign: TextAlign.center,
+          ),
+          backgroundColor: Colors.red,
         ),
-        backgroundColor: Colors.green,
-      ),
-    );
-
-    final user =
-        UserModel(photo: _photo!.path, name: name, age: age, number: number);
-    await addUser(user);
-
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => Profile(),
-    ));
+      );
+    } else {
+      getUser();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: Text(
+            "Details added Successfully !",
+            style: TextStyle(fontSize: 20),
+            textAlign: TextAlign.center,
+          ),
+          backgroundColor: Colors.green,
+        ),
+      );
+      final user =
+          UserModel(photo: _photo!.path, name: name, age: age, number: number);
+      await addUser(user);
+      Navigator.pop(context);
+    }
   }
 
   File? _photo;

@@ -380,13 +380,46 @@ class _AddTransactionState extends State<AddTransaction> {
   Future<void> addTransaction() async {
     final amountText = _amountTextEditingController.text;
     final descriptionText = _descriptionTextEditingController.text;
-    if (descriptionText.isEmpty) {
-      return;
-    }
     if (amountText.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Center(
+                child: Text(
+          'Please enter an amount.',
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.red,
+          ),
+        ))),
+      );
       return;
     }
     if (_categoryID == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Center(
+                child: Text(
+          'Please select a category.',
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.red,
+          ),
+        ))),
+      );
+      return;
+    }
+    if (descriptionText.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Center(
+                child: Text(
+          'Please enter a description.',
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.red,
+          ),
+        ))),
+      );
       return;
     }
 
@@ -394,11 +427,32 @@ class _AddTransactionState extends State<AddTransaction> {
       return;
     }
     if (_selectedDate == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Center(
+                child: Text(
+          'Please select a date.',
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.red,
+          ),
+        ))),
+      );
       return;
     }
 
     final parsedAmount = double.tryParse(amountText);
     if (parsedAmount == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text(
+          'Please enter a valid amount.',
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.red,
+          ),
+        )),
+      );
       return;
     }
 

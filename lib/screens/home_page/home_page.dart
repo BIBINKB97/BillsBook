@@ -139,6 +139,7 @@ class HomePage extends StatelessWidget {
                                                   .height *
                                               0.025,
                                           child: Text(
+                                            overflow: TextOverflow.ellipsis,
                                             '₹${incomeNotifier.value.toString()}',
                                             style: TextStyle(
                                                 fontSize: 20,
@@ -210,6 +211,7 @@ class HomePage extends StatelessWidget {
                                                   .height *
                                               0.025,
                                           child: Text(
+                                            overflow: TextOverflow.ellipsis,
                                             '₹${expenseNotifier.value.toString()}',
                                             style: TextStyle(
                                                 fontSize: 20,

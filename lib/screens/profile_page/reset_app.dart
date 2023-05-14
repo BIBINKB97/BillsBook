@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:lottie/lottie.dart';
 import 'package:money_management_project/database/category_db/category_db.dart';
+import 'package:money_management_project/database/profile_db/profile_db.dart';
 import 'package:money_management_project/model/category_model/category_model.dart';
+import 'package:money_management_project/model/profile_model/user_model.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
 import 'package:money_management_project/screens/home_page/balance/balance.dart';
 import 'package:money_management_project/screens/splash_screens/splash1.dart';
@@ -124,9 +126,15 @@ class ResetPage extends StatelessWidget {
                                           final categorydb =
                                               await Hive.openBox<CategoryModel>(
                                                   'category');
+                                          final userDB =
+                                              await Hive.openBox<UserModel>(
+                                                  'UserDb');
 
                                           categorydb.clear();
                                           transationDb.clear();
+                                          userDB.clear();
+                                          userData = null;
+
                                           incomeNotifier = ValueNotifier(0);
                                           expenseNotifier = ValueNotifier(0);
                                           totalNotifier = ValueNotifier(0);

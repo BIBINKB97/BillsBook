@@ -42,12 +42,14 @@ class AboutUs extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.35,
+              height: MediaQuery.of(context).size.height * 0.45,
             ),
             Text(
               'Developed by Bibin KB',
               style: TextStyle(
-                  fontSize: 20, color: Color.fromARGB(210, 151, 52, 184)),
+                  fontSize: 20,
+                  color: Color.fromARGB(210, 151, 52, 184),
+                  fontWeight: FontWeight.w500),
             )
           ]),
         ),

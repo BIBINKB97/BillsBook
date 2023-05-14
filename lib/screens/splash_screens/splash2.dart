@@ -1,97 +1,56 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:money_management_project/screens/home_page/bottom_nav/bottom_nav.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:money_management_project/screens/splash_screens/splash1.dart';
+import 'package:money_management_project/screens/home_page/bottom_nav/bottom_nav.dart';
 
-class Splash2 extends StatelessWidget {
+class Splash2 extends StatefulWidget {
   const Splash2({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _Splash2State createState() => _Splash2State();
+}
+
+class _Splash2State extends State<Splash2> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(milliseconds: 800), () {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => BottomNav()));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.057,
+              height: MediaQuery.of(context).size.height * 0.3,
             ),
-            Container(
-              alignment: Alignment.topCenter,
+            CircleAvatar(
+              radius: 100,
+              backgroundImage: AssetImage("images/app_icon.png"),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            Center(
               child: Text(
                 "Bill's Book",
                 style: GoogleFonts.exo(
                     fontSize: 50,
                     fontWeight: FontWeight.w800,
-                    color: Color.fromARGB(210, 151, 52, 184)),
-              ),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.5,
-              width: MediaQuery.of(context).size.width * 0.8,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage("images/2nd.png"),
-              )),
-            ),
-            Text(
-              "Enter  Name",
-              style: TextStyle(
-                  fontSize: 30,
-                  color: Color.fromARGB(210, 151, 52, 184),
-                  fontWeight: FontWeight.w800),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: TextFormField(
-                decoration: InputDecoration(
-                    hintText: "Enter your name",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)))),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            MaterialButton(
-              height: MediaQuery.of(context).size.height * 0.055,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8))),
-              color: Color.fromARGB(210, 151, 52, 184),
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => Splash1()));
-              },
-              child: Text(
-                'Continue',
-                style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.w500,
                     color: Colors.white),
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.01,
-            ),
-            Column(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => BottomNav()));
-                  },
-                  child: Text(
-                    'Skip >>',
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black),
-                  ),
-                ),
-              ],
+              width: MediaQuery.of(context).size.width * 0.3,
+              child: LinearProgressIndicator(),
             )
           ],
         ),
