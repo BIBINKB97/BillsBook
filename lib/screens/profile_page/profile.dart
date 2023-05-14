@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:money_management_project/database/profile_db/profile_db.dart';
 import 'package:money_management_project/screens/profile_page/Edit_profile.dart';
@@ -20,6 +19,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    getUser();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(

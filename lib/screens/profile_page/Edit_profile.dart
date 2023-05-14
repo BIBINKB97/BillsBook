@@ -4,6 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:money_management_project/database/profile_db/profile_db.dart';
 import 'package:money_management_project/model/profile_model/user_model.dart';
+import 'package:money_management_project/screens/home_page/bottom_nav/bottom_nav.dart';
+import 'package:money_management_project/screens/profile_page/profile.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -128,7 +130,6 @@ class _EditProfileState extends State<EditProfile> {
                         ElevatedButton(
                           onPressed: () {
                             onSaveButton();
-                            getUser();
                           },
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
