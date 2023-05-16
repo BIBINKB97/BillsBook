@@ -9,6 +9,7 @@ import 'package:money_management_project/screens/add_categories/add_categories.d
 import 'package:intl/intl.dart';
 import 'package:money_management_project/screens/home_page/bottom_nav/bottom_nav.dart';
 
+// ignore: must_be_immutable
 class EditDetails extends StatefulWidget {
   TransactionModel data;
 
@@ -42,6 +43,8 @@ class _EditDetailsState extends State<EditDetails> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -57,7 +60,7 @@ class _EditDetailsState extends State<EditDetails> {
       body: SingleChildScrollView(
         child: Column(children: [
           Container(
-            height: 230,
+            height: height * 0.28,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20),
@@ -74,9 +77,7 @@ class _EditDetailsState extends State<EditDetails> {
             child: SafeArea(
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 50,
-                  ),
+                  SizedBox(height: height * 0.07),
                   Center(
                       child: Text(
                     'Enter Amount',
@@ -86,12 +87,12 @@ class _EditDetailsState extends State<EditDetails> {
                         color: Color.fromARGB(210, 151, 52, 184)),
                   )),
                   SizedBox(
-                    height: 25,
+                    height: height * 0.03,
                   ),
                   Center(
                     child: SizedBox(
-                      height: 65,
-                      width: 160,
+                      height: height * 0.095,
+                      width: width * 0.40,
                       child: TextFormField(
                         controller: _amountTextEditingController,
                         decoration: InputDecoration(
@@ -115,195 +116,195 @@ class _EditDetailsState extends State<EditDetails> {
               ),
             ),
           ),
-          Column(
+          Row(
             children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.085,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.data.type = CategoryType.income;
-                        _selectedCategorytype = CategoryType.income;
-                        // _categoryID = null;
-                      });
-                    },
-                    child: Container(
-                      height: 60,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Row(
-                        children: [
-                          Radio(
-                              activeColor: Colors.white,
-                              value: CategoryType.income,
-                              groupValue: _selectedCategorytype,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  _selectedCategorytype = newValue;
-                                  _categoryID = null;
-                                });
-                              }),
-                          Text(
-                            "Income",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.059,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.data.type = CategoryType.expense;
-                        _selectedCategorytype = CategoryType.expense;
-                        _categoryID = null;
-                      });
-                    },
-                    child: Container(
-                      height: 60,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Row(
-                        children: [
-                          Radio(
-                              activeColor: Colors.white,
-                              value: CategoryType.expense,
-                              groupValue: _selectedCategorytype,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  _selectedCategorytype = newValue;
-                                  _categoryID = null;
-                                });
-                              }),
-                          Text(
-                            "Expense",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(
-                height: 30,
+                width: width * 0.116,
               ),
-              SizedBox(
-                  width: 350,
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    widget.data.type = CategoryType.income;
+                    _selectedCategorytype = CategoryType.income;
+                    // _categoryID = null;
+                  });
+                },
+                child: Container(
+                  height: height * 0.070,
+                  width: width * 0.35,
+                  decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Row(
                     children: [
-                      Container(
-                        width: 160,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 1.0,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: DropdownButton<String>(
-                            isExpanded: true,
-                            underline: Container(),
-                            hint: Text(
-                              widget.data.category.name,
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            value: _categoryID,
-                            items: (_selectedCategorytype == CategoryType.income
-                                    ? CategoryDB().incomeCategoryListListner
-                                    : CategoryDB().expenseCategoryListListner)
-                                .value
-                                .map((e) {
-                              return DropdownMenuItem(
-                                value: e.id,
-                                child: Text(
-                                  e.name,
-                                  style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                onTap: () {
-                                  _selectedCategoryModel = e;
-                                },
-                              );
-                            }).toList(),
-                            onChanged: (selectedValue) {
-                              setState(() {
-                                _categoryID = selectedValue;
-                              });
-                            },
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.059,
-                      ),
-                      Container(
-                        height: 60,
-                        width: 163,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 1.2,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.add_circle,
-                              size: 30,
-                              color: Color.fromARGB(150, 151, 52, 184),
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => AddCategories()));
-                                },
-                                child: Text(
-                                  'New Category',
-                                  style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
-                                )),
-                          ],
-                        ),
-                      ),
+                      Radio(
+                          activeColor: Colors.white,
+                          value: CategoryType.income,
+                          groupValue: _selectedCategorytype,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedCategorytype = newValue;
+                              _categoryID = null;
+                            });
+                          }),
+                      Text(
+                        "Income",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      )
                     ],
-                  )),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: width * 0.059,
+              ),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    widget.data.type = CategoryType.expense;
+                    _selectedCategorytype = CategoryType.expense;
+                    _categoryID = null;
+                  });
+                },
+                child: Container(
+                  height: height * 0.070,
+                  width: width * 0.35,
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    children: [
+                      Radio(
+                          activeColor: Colors.white,
+                          value: CategoryType.expense,
+                          groupValue: _selectedCategorytype,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedCategorytype = newValue;
+                              _categoryID = null;
+                            });
+                          }),
+                      Text(
+                        "Expense",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
           SizedBox(
-            height: 30,
+            height: height * 0.03,
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: width * 0.06,
+              ),
+              Container(
+                height: height * 0.075,
+                width: width * 0.415,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 1.0,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButton<String>(
+                    isExpanded: true,
+                    underline: Container(),
+                    hint: Text(
+                      widget.data.category.name,
+                      style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    value: _categoryID,
+                    items: (_selectedCategorytype == CategoryType.income
+                            ? CategoryDB().incomeCategoryListListner
+                            : CategoryDB().expenseCategoryListListner)
+                        .value
+                        .map((e) {
+                      return DropdownMenuItem(
+                        value: e.id,
+                        child: Text(
+                          e.name,
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        onTap: () {
+                          _selectedCategoryModel = e;
+                        },
+                      );
+                    }).toList(),
+                    onChanged: (selectedValue) {
+                      setState(() {
+                        _categoryID = selectedValue;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: width * 0.040,
+              ),
+              Container(
+                height: height * 0.075,
+                width: width * 0.415,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 1.2,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.playlist_add_circle,
+                        size: 30,
+                        color: Color.fromARGB(150, 151, 52, 184),
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => AddCategories()));
+                          },
+                          child: Text(
+                            'New Category',
+                            style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600),
+                          )),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: height * 0.03,
           ),
           Column(
             children: [
               SizedBox(
-                width: 350,
+                width: width * 0.9,
                 child: TextFormField(
                   controller: _descriptionTextEditingController,
                   decoration: InputDecoration(
@@ -313,13 +314,13 @@ class _EditDetailsState extends State<EditDetails> {
                     ),
                   ),
                   cursorColor: Colors.black,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
               ),
             ],
           ),
           SizedBox(
-            height: 25,
+            height: height * 0.03,
           ),
           Column(
             children: [
@@ -364,7 +365,7 @@ class _EditDetailsState extends State<EditDetails> {
             ],
           ),
           SizedBox(
-            height: 40,
+            height: height * 0.05,
           ),
           Column(children: [
             MaterialButton(
@@ -393,20 +394,68 @@ class _EditDetailsState extends State<EditDetails> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Future<void> EditedTansaction() async {
     final amountText = _amountTextEditingController.text;
     final descriptionText = _descriptionTextEditingController.text;
-    if (descriptionText.isEmpty) {
+    if (amountText.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Center(
+                child: Text(
+          'Please enter an amount.',
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.red,
+          ),
+        ))),
+      );
       return;
     }
-    if (amountText.isEmpty) {
+    if (_categoryID == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Center(
+                child: Text(
+          'Please select a category.',
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.red,
+          ),
+        ))),
+      );
+      return;
+    }
+    if (descriptionText.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Center(
+                child: Text(
+          'Please enter a description.',
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.red,
+          ),
+        ))),
+      );
       return;
     }
 
-    if (_selectedCategorytype == null) {
+    if (_selectedCategoryModel == null) {
       return;
     }
     if (_selectedDate == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Center(
+                child: Text(
+          'Please select a date.',
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.red,
+          ),
+        ))),
+      );
       return;
     }
 
@@ -425,6 +474,7 @@ class _EditDetailsState extends State<EditDetails> {
 
     await transactionDB.instance.editedTransaction(model);
     transactionDB.instance.refreshAll();
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         margin: EdgeInsets.only(bottom: 42),

@@ -45,55 +45,57 @@ class _AddCategoriesState extends State<AddCategories> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: DefaultTabController(
-        length: 2,
-        child: SingleChildScrollView(
-            child: Column(children: [
-          Container(
-              height: MediaQuery.of(context).size.height * 0.9,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: const [
-                    Color.fromARGB(200, 151, 52, 184),
-                    Colors.white,
-                  ],
+      body: SingleChildScrollView(
+        child: DefaultTabController(
+          length: 2,
+          child: Column(children: [
+            Container(
+                height: MediaQuery.of(context).size.height * 0.9,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: const [
+                      Color.fromARGB(200, 151, 52, 184),
+                      Colors.white,
+                    ],
+                  ),
                 ),
-              ),
-              child: SafeArea(
-                  child: Column(children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.009,
-                ),
-                TabBar(
-                    indicatorColor: Color.fromRGBO(151, 52, 184, 0.784),
-                    tabs: const [
-                      Tab(
-                        child: Text(
-                          'Income',
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.w500),
+                child: Column(children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.009,
+                  ),
+                  TabBar(
+                      indicatorColor: Color.fromRGBO(151, 52, 184, 0.784),
+                      tabs: const [
+                        Tab(
+                          child: Text(
+                            'Income',
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.w500),
+                          ),
                         ),
-                      ),
-                      Tab(
-                        child: Text(
-                          'Expense',
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.w500),
+                        Tab(
+                          child: Text(
+                            'Expense',
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.w500),
+                          ),
                         ),
-                      ),
-                    ]),
-                Expanded(
-                    child: TabBarView(children:  const [
-                      
-           
-
-          IncomeCategoryList(),
-                  ExpenseCategoryList(),
-                ]))
-              ]))),
-        ])),
+                      ]),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.9 -
+                        kToolbarHeight,
+                    child: TabBarView(
+                      children: const [
+                        IncomeCategoryList(),
+                        ExpenseCategoryList(),
+                      ],
+                    ),
+                  ),
+                ])),
+          ]),
+        ),
       ),
     );
   }

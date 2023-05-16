@@ -88,13 +88,13 @@ class _RecentState extends State<Recent> {
                         height: 5,
                       );
                     },
-                    itemCount: newList.length > 4 ? 4 : newList.length,
+                    itemCount: newList.length > 6 ? 6 : newList.length,
                   )
                 : Center(
                     child: Column(
                       children: [
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.11,
+                          height: MediaQuery.of(context).size.height * 0.07,
                         ),
                         ColorFiltered(
                           colorFilter:
@@ -102,15 +102,15 @@ class _RecentState extends State<Recent> {
                           child: Lottie.asset(
                             'images/noresults.json',
                             width: MediaQuery.of(context).size.width * 0.4,
-                            height: MediaQuery.of(context).size.height * 0.15,
+                            height: MediaQuery.of(context).size.height * 0.1,
                           ),
                         ),
                         Text(
                           "  No transactions yet !",
                           style: TextStyle(
-                              fontSize: 25,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w500),
+                            fontSize: 25,
+                            color: Colors.grey,
+                          ),
                         ),
                       ],
                     ),

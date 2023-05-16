@@ -37,7 +37,7 @@ class _FinancialReportState extends State<FinancialReport>
     tabController = TabController(length: 3, vsync: this);
 
     filterFunction();
-  
+
     super.initState();
   }
 
@@ -178,21 +178,27 @@ class _FinancialReportState extends State<FinancialReport>
                             ? Center(
                                 child: Column(
                                   children: [
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.1,
+                                    ),
                                     ColorFiltered(
                                       colorFilter: ColorFilter.mode(
                                           Colors.black, BlendMode.srcIn),
                                       child: Lottie.asset(
                                         'images/noresults.json',
-                                        width: width * 0.5,
-                                        height: height * 0.3,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.3,
                                       ),
                                     ),
                                     Text(
-                                      "No transactions yet!",
+                                      "   No transactions yet !",
                                       style: TextStyle(
-                                          fontSize: 30,
-                                          color: Colors.black54,
-                                          fontWeight: FontWeight.w600),
+                                        fontSize: 25,
+                                        color: Colors.black54,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -234,21 +240,27 @@ class _FinancialReportState extends State<FinancialReport>
                             ? Center(
                                 child: Column(
                                   children: [
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.1,
+                                    ),
                                     ColorFiltered(
                                       colorFilter: ColorFilter.mode(
                                           Colors.black, BlendMode.srcIn),
                                       child: Lottie.asset(
                                         'images/noresults.json',
-                                        width: width * 0.5,
-                                        height: height * 0.3,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.3,
                                       ),
                                     ),
                                     Text(
-                                      "No transactions yet!",
+                                      "   No transactions yet !",
                                       style: TextStyle(
-                                          fontSize: 30,
-                                          color: Colors.black54,
-                                          fontWeight: FontWeight.w600),
+                                        fontSize: 25,
+                                        color: Colors.black54,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -287,25 +299,33 @@ class _FinancialReportState extends State<FinancialReport>
                           16,
                         ),
                         child: chartdivertFunctionExpense().isEmpty
-                            ? Column(
-                                children: [
-                                  ColorFiltered(
-                                    colorFilter: ColorFilter.mode(
-                                        Colors.black, BlendMode.srcIn),
-                                    child: Lottie.asset(
-                                      'images/noresults.json',
-                                      width: width * 0.5,
-                                      height: height * 0.3,
+                            ? Center(
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.1,
                                     ),
-                                  ),
-                                  Text(
-                                    "No transactions yet!",
-                                    style: TextStyle(
-                                        fontSize: 30,
+                                    ColorFiltered(
+                                      colorFilter: ColorFilter.mode(
+                                          Colors.black, BlendMode.srcIn),
+                                      child: Lottie.asset(
+                                        'images/noresults.json',
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.3,
+                                      ),
+                                    ),
+                                    Text(
+                                      "   No transactions yet !",
+                                      style: TextStyle(
+                                        fontSize: 25,
                                         color: Colors.black54,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               )
                             : SfCircularChart(
                                 legend: Legend(

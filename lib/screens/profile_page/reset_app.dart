@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:lottie/lottie.dart';
-import 'package:money_management_project/database/category_db/category_db.dart';
 import 'package:money_management_project/database/profile_db/profile_db.dart';
 import 'package:money_management_project/model/category_model/category_model.dart';
 import 'package:money_management_project/model/profile_model/user_model.dart';
@@ -139,6 +138,7 @@ class ResetPage extends StatelessWidget {
                                           expenseNotifier = ValueNotifier(0);
                                           totalNotifier = ValueNotifier(0);
 
+                                          // ignore: use_build_context_synchronously
                                           Navigator.of(context).pushReplacement(
                                               MaterialPageRoute(
                                             builder: (context) =>

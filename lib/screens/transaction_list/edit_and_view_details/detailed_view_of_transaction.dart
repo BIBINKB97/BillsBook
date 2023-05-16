@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:money_management_project/model/category_model/category_model.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
 
 import 'package:money_management_project/screens/transaction_list/edit_and_view_details/edit_transaction.dart';
@@ -32,7 +29,7 @@ class TransactionDetails extends StatelessWidget {
         body: SingleChildScrollView(
             child: Column(children: [
           Container(
-              height: 800,
+              height: MediaQuery.of(context).size.height * 0.9,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(30),
@@ -49,7 +46,7 @@ class TransactionDetails extends StatelessWidget {
               child: ListView(children: [
                 Column(children: [
                   SizedBox(
-                    height: 50,
+                    height: MediaQuery.of(context).size.height * 0.06,
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.9,
@@ -164,7 +161,7 @@ class TransactionDetails extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: MediaQuery.of(context).size.height * 0.02,
                         ),
                         ElevatedButton(
                             style: ButtonStyle(

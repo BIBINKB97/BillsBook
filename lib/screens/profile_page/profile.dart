@@ -57,11 +57,11 @@ class _ProfileState extends State<Profile> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: height * 0.03,
+                          height: height * 0.02,
                         ),
                         Container(
                           width: width * 0.84,
-                          height: height * 0.17,
+                          height: height * 0.16,
                           decoration: BoxDecoration(
                               color: Color.fromRGBO(254, 250, 255, 1),
                               borderRadius:
@@ -87,7 +87,7 @@ class _ProfileState extends State<Profile> {
                                   child: Text(
                                     userData?.name ?? 'Edit Profile',
                                     style: TextStyle(
-                                        fontSize: 25,
+                                        fontSize: 22,
                                         fontWeight: FontWeight.w700),
                                   ),
                                 ),
@@ -106,29 +106,34 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         SizedBox(
-                          height: height * 0.03,
+                          height: height * 0.02,
                         ),
                         Container(
                           width: width * 0.84,
-                          height: height * 0.53,
+                          height: height * 0.55,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30))),
                           child: Column(
                             children: [
+                              SizedBox(
+                                height: height * 0.04,
+                              ),
                               Padding(
-                                padding: EdgeInsets.only(left: 20, top: 30),
+                                padding: EdgeInsets.only(left: 20),
                                 child: ListTile(
                                   onTap: () async {
                                     await getUser();
                                     if (userData == null) {
+                                      // ignore: use_build_context_synchronously
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => EditProfile(),
                                           ));
                                     } else {
+                                      // ignore: use_build_context_synchronously
                                       Navigator.of(context)
                                           .push(MaterialPageRoute(
                                         builder: (context) => MyAccount(),
@@ -148,8 +153,11 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
                               Padding(
-                                padding: EdgeInsets.only(left: 20, top: 30),
+                                padding: EdgeInsets.only(left: 20),
                                 child: ListTile(
                                   onTap: () {
                                     Navigator.of(context)
@@ -170,8 +178,11 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
                               Padding(
-                                padding: EdgeInsets.only(left: 20, top: 30),
+                                padding: EdgeInsets.only(left: 20),
                                 child: ListTile(
                                   onTap: () {
                                     Navigator.of(context)
@@ -193,8 +204,13 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
                               Padding(
-                                padding: EdgeInsets.only(left: 20, top: 30),
+                                padding: EdgeInsets.only(
+                                  left: 20,
+                                ),
                                 child: ListTile(
                                   onTap: () {
                                     Navigator.of(context)
@@ -215,8 +231,11 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
                               Padding(
-                                padding: EdgeInsets.only(left: 20, top: 30),
+                                padding: EdgeInsets.only(left: 20),
                                 child: ListTile(
                                   onTap: () {
                                     Navigator.of(context)
@@ -237,6 +256,10 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: height * 0.035,
+                              ),
+                              Text('version 1.0.1')
                             ],
                           ),
                         )

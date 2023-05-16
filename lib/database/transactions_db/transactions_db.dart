@@ -12,6 +12,7 @@ abstract class TransactionDbFunctions {
   Future<void> deleteTransaction(int id);
 }
 
+// ignore: camel_case_types
 class transactionDB implements TransactionDbFunctions {
   transactionDB._internal();
 

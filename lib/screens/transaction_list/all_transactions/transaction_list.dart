@@ -94,7 +94,7 @@ class _TransactionListState extends State<TransactionList> {
               ],
             ),
             body: Container(
-              height: MediaQuery.of(context).size.height * 0.9 ,
+              height: MediaQuery.of(context).size.height * 0.9,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -189,165 +189,160 @@ class _TransactionListState extends State<TransactionList> {
                   ],
                 ),
                 Expanded(
-                    child: newList.isNotEmpty
-                        ? ListView.separated(
-                            padding: const EdgeInsets.all(10),
-                            itemBuilder: (context, index) {
-                              final value = newList[index];
-                              return Stack(
-                                children: [
-                                  Slidable(
-                                    key: Key(value.id.toString()),
-                                    startActionPane: ActionPane(
-                                      motion: ScrollMotion(),
-                                      children: [
-                                        SlidableAction(
-                                          backgroundColor: Colors.transparent,
-                                          onPressed: (ctx) {
-                                            showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  return AlertDialog(
-                                                    title: Text(
-                                                      'Alert !',
-                                                      style: TextStyle(
-                                                          color: Colors.red,
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.w600),
-                                                    ),
-                                                    content: Text(
-                                                      'Do you want to delete this transaction?',
-                                                      style: TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w600),
-                                                    ),
-                                                    actions: [
-                                                      TextButton(
-                                                          onPressed: () {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                          },
-                                                          child: Text(
-                                                            'No',
-                                                            style: TextStyle(
-                                                                color:
-                                                                    Colors.blue,
-                                                                fontSize: 19,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          )),
-                                                      TextButton(
-                                                          onPressed: () {
-                                                            transactionDB
-                                                                .instance
-                                                                .deleteTransaction(
-                                                                    value.id!);
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                          },
-                                                          child: Text(
-                                                            'Yes',
-                                                            style: TextStyle(
-                                                                color:
-                                                                    Colors.red,
-                                                                fontSize: 19,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ))
-                                                    ],
-                                                  );
-                                                });
-                                          },
-                                          icon: Icons.delete,
-                                          label: 'Delete',
-                                        )
-                                      ],
-                                    ),
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(20))),
-                                      child: ListTile(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      TransactionDetails(
-                                                        data: value,
-                                                      )));
+                  child: newList.isNotEmpty
+                      ? ListView.separated(
+                          padding: const EdgeInsets.all(10),
+                          itemBuilder: (context, index) {
+                            final value = newList[index];
+                            return Stack(
+                              children: [
+                                Slidable(
+                                  key: Key(value.id.toString()),
+                                  startActionPane: ActionPane(
+                                    motion: ScrollMotion(),
+                                    children: [
+                                      SlidableAction(
+                                        backgroundColor: Colors.transparent,
+                                        onPressed: (ctx) {
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                    'Alert !',
+                                                    style: TextStyle(
+                                                        color: Colors.red,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  content: Text(
+                                                    'Do you want to delete this transaction?',
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  actions: [
+                                                    TextButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text(
+                                                          'No',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.blue,
+                                                              fontSize: 19,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                        )),
+                                                    TextButton(
+                                                        onPressed: () {
+                                                          transactionDB.instance
+                                                              .deleteTransaction(
+                                                                  value.id!);
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text(
+                                                          'Yes',
+                                                          style: TextStyle(
+                                                              color: Colors.red,
+                                                              fontSize: 19,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                        ))
+                                                  ],
+                                                );
+                                              });
                                         },
-                                        title: Text(
-                                          value.category.name,
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                        icon: Icons.delete,
+                                        label: 'Delete',
+                                      )
+                                    ],
+                                  ),
+                                  child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: ListTile(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    TransactionDetails(
+                                                      data: value,
+                                                    )));
+                                      },
+                                      title: Text(
+                                        value.category.name,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
                                         ),
-                                        subtitle: Text(
-                                          parseDate(value.date),
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                      ),
+                                      subtitle: Text(
+                                        parseDate(value.date),
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
                                         ),
-                                        trailing: Text(
-                                          "₹ ${value.amount}",
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500,
-                                            color: value.type ==
-                                                    CategoryType.income
-                                                ? Colors.green
-                                                : Colors.red,
-                                          ),
+                                      ),
+                                      trailing: Text(
+                                        "₹ ${value.amount}",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                          color:
+                                              value.type == CategoryType.income
+                                                  ? Colors.green
+                                                  : Colors.red,
                                         ),
                                       ),
                                     ),
                                   ),
-                                ],
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return SizedBox(
-                                height: 10,
-                              );
-                            },
-                            itemCount: newList.length,
-                          )
-                        : Center(
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.1,
-                                ),
-                                ColorFiltered(
-                                  colorFilter: ColorFilter.mode(
-                                      Colors.black, BlendMode.srcIn),
-                                  child: Lottie.asset(
-                                    'images/noresults.json',
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.5,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.3,
-                                  ),
-                                ),
-                                Text(
-                                  "   No transactions yet !",
-                                  style: TextStyle(
-                                      fontSize: 30,
-                                      color: Colors.black54,
-                                      fontWeight: FontWeight.w600),
                                 ),
                               ],
-                            ),
-                          ))
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(
+                              height: 10,
+                            );
+                          },
+                          itemCount: newList.length,
+                        )
+                      : Center(
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
+                              ),
+                              ColorFiltered(
+                                colorFilter: ColorFilter.mode(
+                                    Colors.black, BlendMode.srcIn),
+                                child: Lottie.asset(
+                                  'images/noresults.json',
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.3,
+                                ),
+                              ),
+                              Text(
+                                "   No transactions yet !",
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.black54,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                ),
               ]),
             ),
           );

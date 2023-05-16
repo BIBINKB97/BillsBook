@@ -13,7 +13,7 @@ Future<void> addUser(UserModel value) async {
 
 Future getUser() async {
   final userDB = await Hive.openBox<UserModel>('UserDb');
-  userData = await userDB.get(userDbId);
+  userData = userDB.get(userDbId);
 }
 
 Future<void> editUser(UserModel updatedValue) async {

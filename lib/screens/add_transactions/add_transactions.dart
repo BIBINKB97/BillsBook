@@ -82,7 +82,7 @@ class _AddTransactionState extends State<AddTransaction> {
                   ),
                   Center(
                     child: SizedBox(
-                      height: height * 0.08,
+                      height: height * 0.095,
                       width: width * 0.40,
                       child: TextFormField(
                         controller: _amountTextEditingController,
@@ -107,181 +107,180 @@ class _AddTransactionState extends State<AddTransaction> {
               ),
             ),
           ),
-          Column(
+          Row(
             children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: width * 0.116,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        _selectedCategorytype = CategoryType.income;
-                        _categoryID = null;
-                      });
-                    },
-                    child: Container(
-                      height: height * 0.070,
-                      width: width * 0.35,
-                      decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Row(
-                        children: [
-                          Radio(
-                              activeColor: Colors.white,
-                              value: CategoryType.income,
-                              groupValue: _selectedCategorytype,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  _selectedCategorytype = CategoryType.income;
-                                  _categoryID = null;
-                                });
-                              }),
-                          Text(
-                            "Income",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: width * 0.059,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        _selectedCategorytype = CategoryType.expense;
-                        _categoryID = null;
-                      });
-                    },
-                    child: Container(
-                      height: height * 0.070,
-                      width: width * 0.35,
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Row(
-                        children: [
-                          Radio(
-                              activeColor: Colors.white,
-                              value: CategoryType.expense,
-                              groupValue: _selectedCategorytype,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  _selectedCategorytype = CategoryType.expense;
-                                  _categoryID = null;
-                                });
-                              }),
-                          Text(
-                            "Expense",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(
-                height: height * 0.03,
+                width: width * 0.116,
               ),
-              SizedBox(
-                  width: width * 0.88,
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    _selectedCategorytype = CategoryType.income;
+                    _categoryID = null;
+                  });
+                },
+                child: Container(
+                  height: height * 0.070,
+                  width: width * 0.35,
+                  decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Row(
                     children: [
-                      Container(
-                        height: height * 0.075,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(
-                              color: Colors.grey, width: width * 0.0025),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: DropdownButton<String>(
-                            underline: Container(),
-                            hint: Text(
-                              'Select Category',
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            value: _categoryID,
-                            items: (_selectedCategorytype == CategoryType.income
-                                    ? CategoryDB().incomeCategoryListListner
-                                    : CategoryDB().expenseCategoryListListner)
-                                .value
-                                .map((e) {
-                              return DropdownMenuItem(
-                                value: e.id,
-                                child: Text(
-                                  e.name,
-                                  style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                onTap: () {
-                                  _selectedCategoryModel = e;
-                                },
-                              );
-                            }).toList(),
-                            onChanged: (selectedValue) {
-                              setState(() {
-                                _categoryID = selectedValue;
-                              });
-                            },
-                            onTap: () {},
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: width * 0.050,
-                      ),
-                      Container(
-                        height: height * 0.075,
-                        width: width * 0.409,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 1.2,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.playlist_add_circle,
-                              size: 30,
-                              color: Color.fromARGB(150, 151, 52, 184),
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => AddCategories()));
-                                },
-                                child: Text(
-                                  'New Category',
-                                  style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
-                                )),
-                          ],
-                        ),
-                      ),
+                      Radio(
+                          activeColor: Colors.white,
+                          value: CategoryType.income,
+                          groupValue: _selectedCategorytype,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedCategorytype = CategoryType.income;
+                              _categoryID = null;
+                            });
+                          }),
+                      Text(
+                        "Income",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      )
                     ],
-                  )),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: width * 0.059,
+              ),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    _selectedCategorytype = CategoryType.expense;
+                    _categoryID = null;
+                  });
+                },
+                child: Container(
+                  height: height * 0.070,
+                  width: width * 0.35,
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    children: [
+                      Radio(
+                          activeColor: Colors.white,
+                          value: CategoryType.expense,
+                          groupValue: _selectedCategorytype,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedCategorytype = CategoryType.expense;
+                              _categoryID = null;
+                            });
+                          }),
+                      Text(
+                        "Expense",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: height * 0.03,
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: width * 0.06,
+              ),
+              Container(
+                height: height * 0.075,
+                width: width * 0.415,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  border: Border.all(color: Colors.grey, width: width * 0.0025),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: DropdownButton<String>(
+                    underline: Container(),
+                    hint: Text(
+                      'Select Category',
+                      style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    value: _categoryID,
+                    items: (_selectedCategorytype == CategoryType.income
+                            ? CategoryDB().incomeCategoryListListner
+                            : CategoryDB().expenseCategoryListListner)
+                        .value
+                        .map((e) {
+                      return DropdownMenuItem(
+                        value: e.id,
+                        child: Text(
+                          e.name,
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        onTap: () {
+                          _selectedCategoryModel = e;
+                        },
+                      );
+                    }).toList(),
+                    onChanged: (selectedValue) {
+                      setState(() {
+                        _categoryID = selectedValue;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: width * 0.040,
+              ),
+              Container(
+                height: height * 0.075,
+                width: width * 0.415,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 1.2,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.playlist_add_circle,
+                        size: 30,
+                        color: Color.fromARGB(150, 151, 52, 184),
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => AddCategories()));
+                          },
+                          child: Text(
+                            'Add  Category',
+                            style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600),
+                          )),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
           SizedBox(
@@ -300,7 +299,7 @@ class _AddTransactionState extends State<AddTransaction> {
                     ),
                   ),
                   cursorColor: Colors.black,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
               ),
             ],
@@ -465,9 +464,11 @@ class _AddTransactionState extends State<AddTransaction> {
 
     await transactionDB.instance.addTransaction(model);
     transactionDB.instance.refreshAll();
+    // ignore: use_build_context_synchronously
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => BottomNav(),
     ));
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         margin: EdgeInsets.only(bottom: 5),

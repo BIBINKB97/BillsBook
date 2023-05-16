@@ -164,7 +164,6 @@ class _EditProfileState extends State<EditProfile> {
         ),
       );
     } else {
-      getUser();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           behavior: SnackBarBehavior.floating,
@@ -179,7 +178,11 @@ class _EditProfileState extends State<EditProfile> {
       final user =
           UserModel(photo: _photo!.path, name: name, age: age, number: number);
       await addUser(user);
-      Navigator.pop(context);
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BottomNav(),
+          ));
     }
   }
 
