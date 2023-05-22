@@ -38,7 +38,6 @@ class _EditDetailsState extends State<EditDetails> {
     _amountTextEditingController.text = widget.data.amount.toString();
     _descriptionTextEditingController.text = widget.data.description;
     super.initState();
-    CategoryDB categoryDB = CategoryDB();
   }
 
   @override
@@ -51,7 +50,9 @@ class _EditDetailsState extends State<EditDetails> {
         title: Text(
           'Edit Details',
           style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.w600, color: Colors.white),
+              fontSize: width * 0.06,
+              fontWeight: FontWeight.w600,
+              color: Colors.white),
         ),
         toolbarHeight: 70,
         elevation: 1,
@@ -82,12 +83,12 @@ class _EditDetailsState extends State<EditDetails> {
                       child: Text(
                     'Enter Amount',
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: width * 0.08,
                         fontWeight: FontWeight.w800,
-                        color: Color.fromARGB(210, 151, 52, 184)),
+                        color: Colors.white),
                   )),
                   SizedBox(
-                    height: height * 0.03,
+                    height: height * 0.04,
                   ),
                   Center(
                     child: SizedBox(
@@ -98,17 +99,18 @@ class _EditDetailsState extends State<EditDetails> {
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(30)),
+                                  BorderRadius.all(Radius.circular(20)),
                             ),
                             prefixIcon: Icon(
                               Icons.currency_rupee_rounded,
                               color: Color.fromARGB(210, 151, 52, 184),
-                              size: 30,
+                              size: width * 0.08,
                             )),
                         cursorColor: Colors.black,
                         keyboardType: TextInputType.number,
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.w700),
+                            fontSize: width * 0.08,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                   ),
@@ -126,7 +128,7 @@ class _EditDetailsState extends State<EditDetails> {
                   setState(() {
                     widget.data.type = CategoryType.income;
                     _selectedCategorytype = CategoryType.income;
-                    // _categoryID = null;
+                    _categoryID = null;
                   });
                 },
                 child: Container(
@@ -151,7 +153,7 @@ class _EditDetailsState extends State<EditDetails> {
                         "Income",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: width * 0.055,
                             fontWeight: FontWeight.w500),
                       )
                     ],
@@ -191,7 +193,7 @@ class _EditDetailsState extends State<EditDetails> {
                         "Expense",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: width * 0.055,
                             fontWeight: FontWeight.w500),
                       )
                     ],
@@ -227,7 +229,7 @@ class _EditDetailsState extends State<EditDetails> {
                       widget.data.category.name,
                       style: TextStyle(
                           color: Colors.black54,
-                          fontSize: 18,
+                          fontSize: width * 0.055,
                           fontWeight: FontWeight.w600),
                     ),
                     value: _categoryID,
@@ -242,7 +244,7 @@ class _EditDetailsState extends State<EditDetails> {
                           e.name,
                           style: TextStyle(
                               color: Colors.black54,
-                              fontSize: 20,
+                              fontSize: width * 0.055,
                               fontWeight: FontWeight.w600),
                         ),
                         onTap: () {
@@ -272,12 +274,12 @@ class _EditDetailsState extends State<EditDetails> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(6.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: Row(
                     children: [
                       Icon(
                         Icons.playlist_add_circle,
-                        size: 30,
+                        size: 25,
                         color: Color.fromARGB(150, 151, 52, 184),
                       ),
                       TextButton(
@@ -289,7 +291,7 @@ class _EditDetailsState extends State<EditDetails> {
                             'New Category',
                             style: TextStyle(
                                 color: Colors.black54,
-                                fontSize: 18,
+                                fontSize: width * 0.052,
                                 fontWeight: FontWeight.w600),
                           )),
                     ],
@@ -314,7 +316,8 @@ class _EditDetailsState extends State<EditDetails> {
                     ),
                   ),
                   cursorColor: Colors.black,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                      fontSize: width * 0.052, fontWeight: FontWeight.w600),
                 ),
               ),
             ],
@@ -358,7 +361,7 @@ class _EditDetailsState extends State<EditDetails> {
                           : DateFormat("dd-MMMM-yyyy").format(_selectedDate!),
                       style: TextStyle(
                           color: Colors.black54,
-                          fontSize: 20,
+                          fontSize: width * 0.053,
                           fontWeight: FontWeight.w600),
                     )),
               ),
@@ -369,8 +372,8 @@ class _EditDetailsState extends State<EditDetails> {
           ),
           Column(children: [
             MaterialButton(
-              height: 50,
-              minWidth: 120,
+              height: height * 0.05,
+              minWidth: width * 0.4,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8))),
               color: Color.fromARGB(210, 151, 52, 184),
@@ -383,7 +386,7 @@ class _EditDetailsState extends State<EditDetails> {
               child: Text(
                 'Save Changes',
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: width * 0.052,
                     fontWeight: FontWeight.w500,
                     color: Colors.white),
               ),
@@ -405,35 +408,7 @@ class _EditDetailsState extends State<EditDetails> {
                 child: Text(
           'Please enter an amount.',
           style: TextStyle(
-            fontSize: 22,
-            color: Colors.red,
-          ),
-        ))),
-      );
-      return;
-    }
-    if (_categoryID == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Center(
-                child: Text(
-          'Please select a category.',
-          style: TextStyle(
-            fontSize: 22,
-            color: Colors.red,
-          ),
-        ))),
-      );
-      return;
-    }
-    if (descriptionText.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Center(
-                child: Text(
-          'Please enter a description.',
-          style: TextStyle(
-            fontSize: 22,
+            fontSize: MediaQuery.of(context).size.width * 0.052,
             color: Colors.red,
           ),
         ))),
@@ -441,7 +416,18 @@ class _EditDetailsState extends State<EditDetails> {
       return;
     }
 
-    if (_selectedCategoryModel == null) {
+    if (descriptionText.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Center(
+                child: Text(
+          'Please enter a description.',
+          style: TextStyle(
+            fontSize: MediaQuery.of(context).size.width * 0.052,
+            color: Colors.red,
+          ),
+        ))),
+      );
       return;
     }
     if (_selectedDate == null) {
@@ -451,7 +437,7 @@ class _EditDetailsState extends State<EditDetails> {
                 child: Text(
           'Please select a date.',
           style: TextStyle(
-            fontSize: 22,
+            fontSize: MediaQuery.of(context).size.width * 0.052,
             color: Colors.red,
           ),
         ))),
@@ -481,7 +467,11 @@ class _EditDetailsState extends State<EditDetails> {
         behavior: SnackBarBehavior.floating,
         content: Text(
           "Changes Saved Successfully !",
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+          // ignore: use_build_context_synchronously
+          style: TextStyle(
+              // ignore: use_build_context_synchronously
+              fontSize: MediaQuery.of(context).size.width * 0.052,
+              fontWeight: FontWeight.w600),
           textAlign: TextAlign.center,
         ),
         backgroundColor: Colors.green,

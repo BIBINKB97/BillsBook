@@ -42,7 +42,9 @@ class _AddTransactionState extends State<AddTransaction> {
         title: Text(
           'Add Transactions',
           style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.w600, color: Colors.white),
+              fontSize: width * 0.06,
+              fontWeight: FontWeight.w600,
+              color: Colors.white),
         ),
         toolbarHeight: 70,
         elevation: 1,
@@ -68,17 +70,17 @@ class _AddTransactionState extends State<AddTransaction> {
             child: SafeArea(
               child: Column(
                 children: [
-                  SizedBox(height: height * 0.07),
+                  SizedBox(height: height * 0.06),
                   Center(
                       child: Text(
                     'Enter Amount',
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: width * 0.08,
                         fontWeight: FontWeight.w800,
                         color: Colors.white),
                   )),
                   SizedBox(
-                    height: height * 0.03,
+                    height: height * 0.045,
                   ),
                   Center(
                     child: SizedBox(
@@ -89,17 +91,18 @@ class _AddTransactionState extends State<AddTransaction> {
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(30)),
+                                  BorderRadius.all(Radius.circular(20)),
                             ),
                             prefixIcon: Icon(
                               Icons.currency_rupee_rounded,
                               color: Color.fromARGB(210, 151, 52, 184),
-                              size: 30,
+                              size: width * 0.075,
                             )),
                         cursorColor: Colors.black,
                         keyboardType: TextInputType.number,
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.w700),
+                            fontSize: width * 0.075,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                   ),
@@ -141,7 +144,7 @@ class _AddTransactionState extends State<AddTransaction> {
                         "Income",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: width * 0.055,
                             fontWeight: FontWeight.w500),
                       )
                     ],
@@ -180,7 +183,7 @@ class _AddTransactionState extends State<AddTransaction> {
                         "Expense",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: width * 0.055,
                             fontWeight: FontWeight.w500),
                       )
                     ],
@@ -212,7 +215,7 @@ class _AddTransactionState extends State<AddTransaction> {
                       'Select Category',
                       style: TextStyle(
                           color: Colors.black54,
-                          fontSize: 18,
+                          fontSize: width * 0.051,
                           fontWeight: FontWeight.w600),
                     ),
                     value: _categoryID,
@@ -227,7 +230,7 @@ class _AddTransactionState extends State<AddTransaction> {
                           e.name,
                           style: TextStyle(
                               color: Colors.black54,
-                              fontSize: 20,
+                              fontSize: width * 0.052,
                               fontWeight: FontWeight.w600),
                         ),
                         onTap: () {
@@ -262,7 +265,7 @@ class _AddTransactionState extends State<AddTransaction> {
                     children: [
                       Icon(
                         Icons.playlist_add_circle,
-                        size: 30,
+                        size: 25,
                         color: Color.fromARGB(150, 151, 52, 184),
                       ),
                       TextButton(
@@ -274,7 +277,7 @@ class _AddTransactionState extends State<AddTransaction> {
                             'Add  Category',
                             style: TextStyle(
                                 color: Colors.black54,
-                                fontSize: 18,
+                                fontSize: width * 0.052,
                                 fontWeight: FontWeight.w600),
                           )),
                     ],
@@ -299,7 +302,8 @@ class _AddTransactionState extends State<AddTransaction> {
                     ),
                   ),
                   cursorColor: Colors.black,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                      fontSize: width * 0.052, fontWeight: FontWeight.w600),
                 ),
               ),
             ],
@@ -343,7 +347,7 @@ class _AddTransactionState extends State<AddTransaction> {
                           : DateFormat("dd-MMMM-yyyy").format(_selectedDate!),
                       style: TextStyle(
                           color: Colors.black54,
-                          fontSize: 20,
+                          fontSize: width * 0.052,
                           fontWeight: FontWeight.w600),
                     )),
               ),
@@ -354,8 +358,8 @@ class _AddTransactionState extends State<AddTransaction> {
           ),
           Column(children: [
             MaterialButton(
-              height: 50,
-              minWidth: 120,
+              height: height * 0.05,
+              minWidth: width * 0.4,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8))),
               color: Color.fromARGB(210, 151, 52, 184),
@@ -365,7 +369,7 @@ class _AddTransactionState extends State<AddTransaction> {
               child: Text(
                 'Submit',
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: width * 0.052,
                     fontWeight: FontWeight.w500,
                     color: Colors.white),
               ),

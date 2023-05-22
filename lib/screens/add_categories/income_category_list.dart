@@ -8,6 +8,8 @@ class IncomeCategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return ValueListenableBuilder(
       valueListenable: CategoryDB().incomeCategoryListListner,
       builder: (BuildContext ctx, List<CategoryModel> newList, Widget? _) {
@@ -17,14 +19,15 @@ class IncomeCategoryList extends StatelessWidget {
                   final Category = newList[indext];
 
                   return Card(
-                    elevation: 0,
+                    elevation: 5,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: ListTile(
                       title: Text(
                         (Category.name),
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600),
+                            fontSize: width * 0.055,
+                            fontWeight: FontWeight.w600),
                       ),
                       trailing: IconButton(
                           onPressed: () {
@@ -36,7 +39,7 @@ class IncomeCategoryList extends StatelessWidget {
                 },
                 separatorBuilder: (context, index) {
                   return SizedBox(
-                    height: 15,
+                    height: height * 0.002,
                   );
                 },
                 itemCount: newList.length,
@@ -46,20 +49,20 @@ class IncomeCategoryList extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.15,
+                      height: height * 0.15,
                     ),
                     ColorFiltered(
                       colorFilter:
                           ColorFilter.mode(Colors.black, BlendMode.srcIn),
                       child: Lottie.asset(
                         'images/noresults.json',
-                        width: MediaQuery.of(context).size.width * 0.3,
+                        width: width * 0.3,
                       ),
                     ),
                     Text(
                       "   No categories added yet !",
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: width * 0.07,
                         color: Colors.black54,
                       ),
                     ),

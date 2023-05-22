@@ -26,32 +26,35 @@ class _BottomNavState extends State<BottomNav> {
     BottomNavigationBarItem(
       icon: Icon(
         IconlyBold.home,
+        size: 30,
       ),
       label: 'Home',
     ),
     BottomNavigationBarItem(
       icon: Icon(
         Icons.compare_arrows,
-        size: 40,
+        size: 37,
       ),
       label: 'Transactions',
     ),
     BottomNavigationBarItem(
       icon: Icon(
         IconlyBold.plus,
-        size: 35,
+        size: 32,
       ),
       label: 'Add Transaction',
     ),
     BottomNavigationBarItem(
       icon: Icon(
         IconlyBold.graph,
+        size: 30,
       ),
       label: 'Statitics',
     ),
     BottomNavigationBarItem(
       icon: Icon(
         IconlyBold.profile,
+        size: 30,
       ),
       label: 'Profile',
     ),
@@ -67,7 +70,6 @@ class _BottomNavState extends State<BottomNav> {
           currentIndex: selectedIndex,
           unselectedItemColor: Colors.grey,
           elevation: 0,
-          iconSize: 32,
           selectedItemColor: Color.fromARGB(210, 151, 52, 184),
           backgroundColor: Colors.black,
           items: _bottomNavbarItems,

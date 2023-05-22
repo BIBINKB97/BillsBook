@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:money_management_project/database/profile_db/profile_db.dart';
 import 'package:money_management_project/model/profile_model/user_model.dart';
 import 'package:money_management_project/screens/home_page/bottom_nav/bottom_nav.dart';
-import 'package:money_management_project/screens/profile_page/profile.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -22,13 +21,17 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
           title: Text(
             'Edit Profile',
             style: TextStyle(
-                fontSize: 22, color: Colors.white, fontWeight: FontWeight.w600),
+                fontSize: width * 0.06,
+                color: Colors.white,
+                fontWeight: FontWeight.w600),
           ),
           toolbarHeight: 70,
           elevation: 1,
@@ -37,7 +40,7 @@ class _EditProfileState extends State<EditProfile> {
         body: SingleChildScrollView(
             child: Column(children: [
           Container(
-              height: MediaQuery.of(context).size.height * 0.9,
+              height: height * 0.9,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(30),
@@ -136,7 +139,7 @@ class _EditProfileState extends State<EditProfile> {
                                   Color.fromARGB(200, 151, 52, 184))),
                           child: Text(
                             '  Save  ',
-                            style: TextStyle(fontSize: 17),
+                            style: TextStyle(fontSize: width * 0.05),
                           ),
                         )
                       ],
@@ -157,32 +160,37 @@ class _EditProfileState extends State<EditProfile> {
           behavior: SnackBarBehavior.floating,
           content: Text(
             "Please fill in all fields !",
-            style: TextStyle(fontSize: 20),
+            style:
+                TextStyle(fontSize: MediaQuery.of(context).size.width * 0.052),
             textAlign: TextAlign.center,
           ),
           backgroundColor: Colors.red,
         ),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          content: Text(
-            "Details added Successfully !",
-            style: TextStyle(fontSize: 20),
-            textAlign: TextAlign.center,
-          ),
-          backgroundColor: Colors.green,
-        ),
-      );
       final user =
           UserModel(photo: _photo!.path, name: name, age: age, number: number);
       await addUser(user);
+      // ignore: use_build_context_synchronously
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => BottomNav(),
           ));
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: Text(
+            "Details added Successfully !",
+            style:
+                // ignore: use_build_context_synchronously
+                TextStyle(fontSize: MediaQuery.of(context).size.width * 0.052),
+            textAlign: TextAlign.center,
+          ),
+          backgroundColor: Colors.green,
+        ),
+      );
     }
   }
 

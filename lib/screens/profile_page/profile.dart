@@ -27,7 +27,7 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
         title: Text(
           'Profile',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: width * 0.06, fontWeight: FontWeight.w600),
         ),
         toolbarHeight: 70,
         elevation: 1,
@@ -57,7 +57,7 @@ class _ProfileState extends State<Profile> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: height * 0.02,
+                          height: height * 0.03,
                         ),
                         Container(
                           width: width * 0.84,
@@ -87,7 +87,7 @@ class _ProfileState extends State<Profile> {
                                   child: Text(
                                     userData?.name ?? 'Edit Profile',
                                     style: TextStyle(
-                                        fontSize: 22,
+                                        fontSize: width * 0.058,
                                         fontWeight: FontWeight.w700),
                                   ),
                                 ),
@@ -106,11 +106,11 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         SizedBox(
-                          height: height * 0.02,
+                          height: height * 0.03,
                         ),
                         Container(
                           width: width * 0.84,
-                          height: height * 0.55,
+                          height: height * 0.5,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius:
@@ -143,12 +143,12 @@ class _ProfileState extends State<Profile> {
                                   leading: Icon(
                                     Icons.account_circle,
                                     color: Color.fromARGB(210, 151, 52, 184),
-                                    size: 35,
+                                    size: width * 0.1,
                                   ),
                                   title: Text(
                                     'My Account',
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: width * 0.052,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
@@ -168,12 +168,12 @@ class _ProfileState extends State<Profile> {
                                   leading: Icon(
                                     Icons.privacy_tip,
                                     color: Color.fromARGB(210, 151, 52, 184),
-                                    size: 35,
+                                    size: width * 0.1,
                                   ),
                                   title: Text(
                                     'Privacy Policy',
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: width * 0.052,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
@@ -194,12 +194,12 @@ class _ProfileState extends State<Profile> {
                                   leading: Icon(
                                     IconlyBold.document,
                                     color: Color.fromARGB(210, 151, 52, 184),
-                                    size: 35,
+                                    size: width * 0.1,
                                   ),
                                   title: Text(
                                     'Terms And Conditions',
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: width * 0.052,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
@@ -221,12 +221,12 @@ class _ProfileState extends State<Profile> {
                                   leading: Icon(
                                     Icons.android_rounded,
                                     color: Color.fromARGB(210, 151, 52, 184),
-                                    size: 35,
+                                    size: width * 0.1,
                                   ),
                                   title: Text(
                                     'About',
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: width * 0.052,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
@@ -246,20 +246,16 @@ class _ProfileState extends State<Profile> {
                                   leading: Icon(
                                     Icons.restore,
                                     color: Color.fromARGB(210, 151, 52, 184),
-                                    size: 35,
+                                    size: width * 0.1,
                                   ),
                                   title: Text(
                                     'Reset App',
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: width * 0.052,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: height * 0.035,
-                              ),
-                              Text('version 1.0.1')
                             ],
                           ),
                         )

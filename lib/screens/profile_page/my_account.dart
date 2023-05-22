@@ -14,6 +14,8 @@ class _MyAccountState extends State<MyAccount> {
   @override
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     getUser();
     return Scaffold(
         appBar: AppBar(
@@ -21,7 +23,9 @@ class _MyAccountState extends State<MyAccount> {
           title: Text(
             'My Account',
             style: TextStyle(
-                fontSize: 22, color: Colors.white, fontWeight: FontWeight.w600),
+                fontSize: width * 0.06,
+                color: Colors.white,
+                fontWeight: FontWeight.w600),
           ),
           toolbarHeight: 70,
           elevation: 1,
@@ -51,7 +55,7 @@ class _MyAccountState extends State<MyAccount> {
                     SafeArea(
                         child: Column(children: [
                       SizedBox(
-                        height: 20,
+                        height: height * 0.04,
                       ),
                       CircleAvatar(
                         radius: 90,
@@ -64,8 +68,8 @@ class _MyAccountState extends State<MyAccount> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white),
-                        width: MediaQuery.of(context).size.width * 0.86,
-                        height: MediaQuery.of(context).size.height * 0.35,
+                        width: width * 0.86,
+                        height: height * 0.35,
                         child: Column(
                           children: [
                             Padding(
@@ -80,7 +84,7 @@ class _MyAccountState extends State<MyAccount> {
                                   text: TextSpan(
                                       text: 'Name : ',
                                       style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: width * 0.045,
                                           color: Colors.black,
                                           fontWeight: FontWeight.w500),
                                       children: <TextSpan>[
@@ -106,7 +110,7 @@ class _MyAccountState extends State<MyAccount> {
                                   text: TextSpan(
                                       text: 'Age : ',
                                       style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: width * 0.045,
                                           color: Colors.black,
                                           fontWeight: FontWeight.w500),
                                       children: <TextSpan>[
@@ -132,7 +136,7 @@ class _MyAccountState extends State<MyAccount> {
                                   text: TextSpan(
                                       text: 'Number : ',
                                       style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: width * 0.045,
                                           color: Colors.black,
                                           fontWeight: FontWeight.w500),
                                       children: <TextSpan>[

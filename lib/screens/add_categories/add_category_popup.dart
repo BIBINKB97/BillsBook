@@ -4,16 +4,18 @@ import 'package:money_management_project/model/category_model/category_model.dar
 
 ValueNotifier<CategoryType> selectedCategoryNotifier =
     ValueNotifier(CategoryType.income);
+
 Future<void> showCategoryAddPopup(BuildContext context) async {
   final nameEditingController = TextEditingController();
   showDialog(
       context: context,
       builder: (ctx) {
         return SimpleDialog(
-          titlePadding: EdgeInsets.only(left: 70, top: 20),
+          titlePadding: EdgeInsets.only(left: 65, top: 20),
           title: Text(
-            'Add a category',
-            style: TextStyle(fontSize: 25),
+            'Add New category',
+            style:
+                TextStyle(fontSize: MediaQuery.of(context).size.width * 0.06),
           ),
           children: [
             Padding(
@@ -29,12 +31,12 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                children: const [
-                  RadioButton( title: 'Income', type: CategoryType.income),
+                children: [
+                  RadioButton(title: 'Income', type: CategoryType.income),
                   SizedBox(
-                    width: 60,
+                    width: MediaQuery.of(context).size.width * 0.15,
                   ),
-                  RadioButton(title: 'Expense' , type: CategoryType.expense)
+                  RadioButton(title: 'Expense', type: CategoryType.expense)
                 ],
               ),
             ),
@@ -57,7 +59,6 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                   Navigator.of(ctx).pop();
                 },
                 style: ButtonStyle(
-                
                     backgroundColor: MaterialStateProperty.all(
                         Color.fromARGB(200, 151, 52, 184))),
                 child: Text('Add'),
@@ -81,7 +82,6 @@ class RadioButton extends StatelessWidget {
             valueListenable: selectedCategoryNotifier,
             builder: (BuildContext ctx, CategoryType newCategory, Widget? _) {
               return Radio<CategoryType>(
-                
                   value: type,
                   groupValue: newCategory,
                   onChanged: (value) {

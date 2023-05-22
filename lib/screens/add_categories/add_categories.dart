@@ -21,13 +21,16 @@ class _AddCategoriesState extends State<AddCategories> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           'Add New Category',
           style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.w600, color: Colors.white),
+              fontSize: width * 0.06,
+              fontWeight: FontWeight.w600,
+              color: Colors.white),
         ),
         toolbarHeight: 70,
         elevation: 1,
@@ -41,7 +44,7 @@ class _AddCategoriesState extends State<AddCategories> {
         backgroundColor: Color.fromARGB(200, 151, 52, 184),
         child: Icon(
           Icons.add,
-          size: 40,
+          size: width * 0.1,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -67,19 +70,21 @@ class _AddCategoriesState extends State<AddCategories> {
                   ),
                   TabBar(
                       indicatorColor: Color.fromRGBO(151, 52, 184, 0.784),
-                      tabs: const [
+                      tabs: [
                         Tab(
                           child: Text(
                             'Income',
                             style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.w500),
+                                fontSize: width * 0.055,
+                                fontWeight: FontWeight.w500),
                           ),
                         ),
                         Tab(
                           child: Text(
                             'Expense',
                             style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.w500),
+                                fontSize: width * 0.055,
+                                fontWeight: FontWeight.w500),
                           ),
                         ),
                       ]),

@@ -20,7 +20,9 @@ class ResetPage extends StatelessWidget {
           title: Text(
             'Reset App',
             style: TextStyle(
-                fontSize: 22, color: Colors.white, fontWeight: FontWeight.w600),
+                fontSize: MediaQuery.of(context).size.width * 0.06,
+                color: Colors.white,
+                fontWeight: FontWeight.w600),
           ),
           toolbarHeight: 70,
           elevation: 1,
@@ -47,15 +49,15 @@ class ResetPage extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.15,
                   child: Lottie.asset('images/reset.json'),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: MediaQuery.of(context).size.width * 0.055),
                 Text(
                   'This action cannot be undone and\n     you will lose all of your data.!',
                   style: TextStyle(
                       color: Color.fromARGB(255, 255, 17, 0),
-                      fontSize: 25,
+                      fontSize: MediaQuery.of(context).size.width * 0.06,
                       fontWeight: FontWeight.w600),
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: MediaQuery.of(context).size.width * 0.08),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -73,7 +75,8 @@ class ResetPage extends StatelessWidget {
                               'Cancel',
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 20,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.05,
                                   fontWeight: FontWeight.w600),
                             ))),
                     ElevatedButton(
@@ -89,13 +92,17 @@ class ResetPage extends StatelessWidget {
                                     'Alert ! ',
                                     style: TextStyle(
                                         color: Colors.red,
-                                        fontSize: 20,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.055,
                                         fontWeight: FontWeight.w600),
                                   ),
                                   content: Text(
                                     'Do you want to reset the entire data?',
                                     style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.052,
                                         fontWeight: FontWeight.w500),
                                   ),
                                   actions: [
@@ -106,7 +113,10 @@ class ResetPage extends StatelessWidget {
                                         child: Text(
                                           'No',
                                           style: TextStyle(
-                                              fontSize: 18,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.052,
                                               color: Colors.green),
                                         )),
                                     TextButton(
@@ -148,7 +158,11 @@ class ResetPage extends StatelessWidget {
                                         child: Text(
                                           'Yes',
                                           style: TextStyle(
-                                              fontSize: 18, color: Colors.red),
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.052,
+                                              color: Colors.red),
                                         ))
                                   ],
                                 );
@@ -158,7 +172,8 @@ class ResetPage extends StatelessWidget {
                           'Reset ',
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 20,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.05,
                               fontWeight: FontWeight.w600),
                         ))
                   ],

@@ -55,7 +55,9 @@ class _FinancialReportState extends State<FinancialReport>
         title: Text(
           'Statitics',
           style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.w600, color: Colors.white),
+              fontSize: width * 0.06,
+              fontWeight: FontWeight.w600,
+              color: Colors.white),
         ),
         toolbarHeight: 70,
         elevation: 1,
@@ -105,7 +107,7 @@ class _FinancialReportState extends State<FinancialReport>
                         ),
                         child: DropdownButton<String>(
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: width * 0.052,
                               color: Colors.black,
                               fontWeight: FontWeight.w500),
                           isExpanded: true,
@@ -139,8 +141,8 @@ class _FinancialReportState extends State<FinancialReport>
                   width: width * 0.9,
                   child: TabBar(
                     unselectedLabelStyle: TextStyle(color: Colors.grey),
-                    labelStyle:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    labelStyle: TextStyle(
+                        fontSize: width * 0.052, fontWeight: FontWeight.w500),
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       color: Colors.white,
@@ -196,7 +198,7 @@ class _FinancialReportState extends State<FinancialReport>
                                     Text(
                                       "   No transactions yet !",
                                       style: TextStyle(
-                                        fontSize: 25,
+                                        fontSize: width * 0.055,
                                         color: Colors.black54,
                                       ),
                                     ),
@@ -258,7 +260,7 @@ class _FinancialReportState extends State<FinancialReport>
                                     Text(
                                       "   No transactions yet !",
                                       style: TextStyle(
-                                        fontSize: 25,
+                                        fontSize: width * 0.055,
                                         color: Colors.black54,
                                       ),
                                     ),
@@ -320,7 +322,7 @@ class _FinancialReportState extends State<FinancialReport>
                                     Text(
                                       "   No transactions yet !",
                                       style: TextStyle(
-                                        fontSize: 25,
+                                        fontSize: width * 0.055,
                                         color: Colors.black54,
                                       ),
                                     ),

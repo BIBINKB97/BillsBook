@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -37,8 +36,7 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   final bool hasSeenSplash;
-
-  const MyApp(this.hasSeenSplash);
+   const MyApp(this.hasSeenSplash, {super.key});
 
   @override
   Widget build(BuildContext context) {

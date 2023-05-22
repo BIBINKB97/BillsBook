@@ -84,11 +84,9 @@ class _RecentState extends State<Recent> {
                       );
                     },
                     separatorBuilder: (context, index) {
-                      return SizedBox(
-                        height: 5,
-                      );
+                      return SizedBox();
                     },
-                    itemCount: newList.length > 6 ? 6 : newList.length,
+                    itemCount: newList.length > 4 ? 4 : newList.length,
                   )
                 : Center(
                     child: Column(

@@ -6,13 +6,18 @@ class AboutUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           'About',
           style: TextStyle(
-              fontSize: 22, color: Colors.white, fontWeight: FontWeight.w600),
+              fontSize: width * 0.06,
+              color: Colors.white,
+              fontWeight: FontWeight.w600),
         ),
         toolbarHeight: 70,
         elevation: 1,
@@ -30,13 +35,13 @@ class AboutUs extends StatelessWidget {
                       style: GoogleFonts.amiko(
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(210, 151, 52, 184),
-                          fontSize: 20)),
+                          fontSize: width * 0.052)),
                   TextSpan(
                       text:
                           "   is a money management app designed to help you track your expenses, create budgets, and achieve your financial goals. With our easy-to-use interface and powerful tools, you can take control of your finances and make informed decisions about your money.\n\nThis app is perfect for individuals and families who want to stay on top of their finances and make informed decisions about their money. Whether you're trying to save up for a big purchase or just looking to get a better handle on your day-to-day expenses, 'BillsBook' has you covered.",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 18,
+                        fontSize: width * 0.045,
                       )),
                 ],
               ),
@@ -45,9 +50,9 @@ class AboutUs extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.45,
             ),
             Text(
-              'Developed by Bibin KB',
+              'Developed by Bibin Kochumalayil',
               style: TextStyle(
-                  fontSize: 20,
+                  fontSize: width * 0.052,
                   color: Color.fromARGB(210, 151, 52, 184),
                   fontWeight: FontWeight.w500),
             )
