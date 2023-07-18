@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:money_management_project/model/category_model/category_model.dart';
-import 'package:money_management_project/database/category_db/category_db.dart';
+import 'package:money_management_project/providers/category_provider.dart';
+import 'package:provider/provider.dart';
 
 class ExpenseCategoryList extends StatelessWidget {
   const ExpenseCategoryList({super.key});
@@ -10,13 +10,13 @@ class ExpenseCategoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return ValueListenableBuilder(
-      valueListenable: CategoryDB().expenseCategoryListListner,
-      builder: (BuildContext ctx, List<CategoryModel> newList, Widget? _) {
-        return newList.isNotEmpty
+    return Consumer<CategoryProviderClass>(
+      builder: (context, categoryProviderClass, _) {
+        return categoryProviderClass.expenseCategoryList.isNotEmpty
             ? ListView.separated(
-                itemBuilder: (context, indext) {
-                  final Category = newList[indext];
+                itemBuilder: (context, index) {
+                  final Category =
+                      categoryProviderClass.expenseCategoryList[index];
                   return Card(
                     elevation: 0,
                     shape: RoundedRectangleBorder(
@@ -30,7 +30,10 @@ class ExpenseCategoryList extends StatelessWidget {
                       ),
                       trailing: IconButton(
                           onPressed: () {
-                            CategoryDB.instance.deleteCategory(Category.id);
+                            // CategoryDB.instance.deleteCategory(Category.id);
+                            Provider.of<CategoryProviderClass>(context,
+                                    listen: false)
+                                .deleteCategory(Category.id);
                           },
                           icon: Icon(Icons.delete)),
                     ),
@@ -41,7 +44,7 @@ class ExpenseCategoryList extends StatelessWidget {
                     height: height * 0.002,
                   );
                 },
-                itemCount: newList.length,
+                itemCount: categoryProviderClass.expenseCategoryList.length,
               )
             : Center(
                 child: Center(

@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:money_management_project/database/profile_db/profile_db.dart';
+import 'package:money_management_project/providers/profile_provider.dart';
+import 'package:provider/provider.dart';
 
 class MyAccount extends StatefulWidget {
   const MyAccount({super.key});
@@ -16,7 +17,7 @@ class _MyAccountState extends State<MyAccount> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    getUser();
+    Provider.of<ProfileProviderClass>(context,listen: false).getUser();
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -48,9 +49,11 @@ class _MyAccountState extends State<MyAccount> {
                   ],
                 ),
               ),
-              child: ValueListenableBuilder(
-                valueListenable: userListNotifier,
-                builder: (context, value, child) {
+              child: Consumer<ProfileProviderClass>(
+
+                
+                builder: (context, profileProviderClass, _) {
+
                   return ListView(children: [
                     SafeArea(
                         child: Column(children: [
@@ -59,7 +62,7 @@ class _MyAccountState extends State<MyAccount> {
                       ),
                       CircleAvatar(
                         radius: 90,
-                        backgroundImage: FileImage(File(userData!.photo)),
+                        backgroundImage: FileImage(File(profileProviderClass.userData!.photo)),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05,
@@ -89,7 +92,7 @@ class _MyAccountState extends State<MyAccount> {
                                           fontWeight: FontWeight.w500),
                                       children: <TextSpan>[
                                         TextSpan(
-                                            text: userData?.name,
+                                            text: profileProviderClass.userData?.name,
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     200, 151, 52, 184),
@@ -115,7 +118,7 @@ class _MyAccountState extends State<MyAccount> {
                                           fontWeight: FontWeight.w500),
                                       children: <TextSpan>[
                                         TextSpan(
-                                            text: userData?.age,
+                                            text: profileProviderClass.userData?.age,
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     200, 151, 52, 184),
@@ -141,7 +144,7 @@ class _MyAccountState extends State<MyAccount> {
                                           fontWeight: FontWeight.w500),
                                       children: <TextSpan>[
                                         TextSpan(
-                                            text: userData?.number,
+                                            text: profileProviderClass.userData?.number,
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     200, 151, 52, 184),

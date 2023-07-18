@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:lottie/lottie.dart';
-import 'package:money_management_project/database/profile_db/profile_db.dart';
+
 import 'package:money_management_project/model/category_model/category_model.dart';
 import 'package:money_management_project/model/profile_model/user_model.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
+import 'package:money_management_project/providers/profile_provider.dart';
 import 'package:money_management_project/screens/home_page/balance/balance.dart';
 import 'package:money_management_project/screens/splash_screens/splash1.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ResetPage extends StatelessWidget {
@@ -119,51 +121,55 @@ class ResetPage extends StatelessWidget {
                                                   0.052,
                                               color: Colors.green),
                                         )),
-                                    TextButton(
-                                        onPressed: () async {
-                                          SharedPreferences prefs =
-                                              await SharedPreferences
-                                                  .getInstance();
-                                          await prefs.clear();
-                                          SharedPreferences textcontrol =
-                                              await SharedPreferences
-                                                  .getInstance();
-                                          await textcontrol.clear();
-                                          final transationDb = await Hive
-                                              .openBox<TransactionModel>(
-                                                  'transactions');
-                                          final categorydb =
-                                              await Hive.openBox<CategoryModel>(
-                                                  'category');
-                                          final userDB =
-                                              await Hive.openBox<UserModel>(
-                                                  'UserDb');
+                                    Consumer<ProfileProviderClass>(builder:
+                                        (context, profileProviderClass, _) {
+                                      return TextButton(
+                                          onPressed: () async {
+                                            SharedPreferences prefs =
+                                                await SharedPreferences
+                                                    .getInstance();
+                                            await prefs.clear();
+                                            SharedPreferences textcontrol =
+                                                await SharedPreferences
+                                                    .getInstance();
+                                            await textcontrol.clear();
+                                            final transationDb = await Hive
+                                                .openBox<TransactionModel>(
+                                                    'transactions');
+                                            final categorydb =
+                                                await Hive.openBox<
+                                                    CategoryModel>('category');
+                                            final userDB =
+                                                await Hive.openBox<UserModel>(
+                                                    'UserDb');
 
-                                          categorydb.clear();
-                                          transationDb.clear();
-                                          userDB.clear();
-                                          userData = null;
+                                            categorydb.clear();
+                                            transationDb.clear();
+                                            userDB.clear();
+                                            profileProviderClass.userData = null;
 
-                                          incomeNotifier = ValueNotifier(0);
-                                          expenseNotifier = ValueNotifier(0);
-                                          totalNotifier = ValueNotifier(0);
+                                            incomeNotifier = ValueNotifier(0);
+                                            expenseNotifier = ValueNotifier(0);
+                                            totalNotifier = ValueNotifier(0);
 
-                                          // ignore: use_build_context_synchronously
-                                          Navigator.of(context).pushReplacement(
-                                              MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Splash1(),
+                                            // ignore: use_build_context_synchronously
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                                    MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Splash1(),
+                                            ));
+                                          },
+                                          child: Text(
+                                            'Yes',
+                                            style: TextStyle(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.052,
+                                                color: Colors.red),
                                           ));
-                                        },
-                                        child: Text(
-                                          'Yes',
-                                          style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.052,
-                                              color: Colors.red),
-                                        ))
+                                    })
                                   ],
                                 );
                               });

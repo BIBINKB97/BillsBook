@@ -11,7 +11,7 @@ class Splash1 extends StatefulWidget {
 }
 
 class _Splash1State extends State<Splash1> {
-  bool _hasSeenSplash = false;
+  bool hasSeenSplash = false;
 
   @override
   void initState() {
@@ -23,7 +23,7 @@ class _Splash1State extends State<Splash1> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool hasSeenSplash = prefs.getBool('hasSeenSplash') ?? false;
     setState(() {
-      _hasSeenSplash = hasSeenSplash;
+      hasSeenSplash = hasSeenSplash;
     });
   }
 

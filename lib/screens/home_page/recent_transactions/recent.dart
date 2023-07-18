@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
-import 'package:money_management_project/database/transactions_db/transactions_db.dart';
 import 'package:money_management_project/model/category_model/category_model.dart';
-import 'package:money_management_project/model/transaction_model/transaction_model.dart';
+import 'package:money_management_project/providers/transaction_provider.dart';
 import 'package:money_management_project/screens/transaction_list/edit_and_view_details/detailed_view_of_transaction.dart';
+import 'package:provider/provider.dart';
 
 class Recent extends StatefulWidget {
   const Recent({super.key});
@@ -16,16 +16,15 @@ class Recent extends StatefulWidget {
 class _RecentState extends State<Recent> {
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: transactionDB.instance.transactionListNotifier,
+    return Consumer<TransactionProviderClass>(
       builder:
-          (BuildContext context, List<TransactionModel> newList, Widget? _) {
+          (context, transactionProviderClass,_) {
         return Expanded(
-            child: newList.isNotEmpty
+            child: transactionProviderClass.transactionList.isNotEmpty
                 ? ListView.separated(
                     padding: const EdgeInsets.all(10),
                     itemBuilder: (context, index) {
-                      final value = newList[index];
+                      final value = transactionProviderClass.transactionList[index];
                       return Card(
                         elevation: 0,
                         color: Color.fromARGB(255, 233, 233, 233),
@@ -86,7 +85,7 @@ class _RecentState extends State<Recent> {
                     separatorBuilder: (context, index) {
                       return SizedBox();
                     },
-                    itemCount: newList.length > 4 ? 4 : newList.length,
+                    itemCount: transactionProviderClass.transactionList.length > 4 ? 4 : transactionProviderClass.transactionList.length,
                   )
                 : Center(
                     child: Column(

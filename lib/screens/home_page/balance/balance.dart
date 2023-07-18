@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:money_management_project/database/transactions_db/transactions_db.dart';
 import 'package:money_management_project/model/category_model/category_model.dart';
+import 'package:money_management_project/providers/transaction_provider.dart';
+import 'package:provider/provider.dart';
 
 ValueNotifier<double> incomeNotifier = ValueNotifier(0);
 ValueNotifier<double> expenseNotifier = ValueNotifier(0);
 ValueNotifier<double> totalNotifier = ValueNotifier(0);
 
-Future<void> balanceAmount() async {
-  await transactionDB.instance.getAllTransactions().then((value) {
+Future<void> balanceAmount(BuildContext context) async {
+  await Provider.of<TransactionProviderClass>(context, listen: false)
+      .getAllTransactions()
+      .then((value) {
     expenseNotifier.value = 0;
     incomeNotifier.value = 0;
     totalNotifier.value = 0;

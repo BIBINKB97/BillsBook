@@ -1,170 +1,167 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:money_management_project/database/transactions_db/transactions_db.dart';
-import 'package:money_management_project/model/category_model/category_model.dart';
-import 'package:money_management_project/model/transaction_model/transaction_model.dart';
+// import 'package:flutter/material.dart';
+// import 'package:intl/intl.dart';
+// import 'package:money_management_project/model/category_model/category_model.dart';
+// import 'package:money_management_project/model/transaction_model/transaction_model.dart';
+// import 'package:money_management_project/providers/transaction_provider.dart';
+// import 'package:provider/provider.dart';
 
-ValueNotifier<List<TransactionModel>> overviewNotifier = ValueNotifier([]);
-ValueNotifier<List<TransactionModel>> incomeNotifier1 = ValueNotifier([]);
+// List<TransactionModel> overviewNotifier = [];
+// List<TransactionModel> incomeNotifier1 = [];
 
-ValueNotifier<List<TransactionModel>> expenseNotifier1 = ValueNotifier([]);
+// List<TransactionModel> expenseNotifier1 = [];
 
-ValueNotifier<List<TransactionModel>> todayNotifier = ValueNotifier([]);
+// List<TransactionModel> todayNotifier = [];
 
-ValueNotifier<List<TransactionModel>> yesterdayNotifier = ValueNotifier([]);
+// List<TransactionModel> yesterdayNotifier = [];
 
-ValueNotifier<List<TransactionModel>> incomeTodayNotifier = ValueNotifier([]);
+// List<TransactionModel> incomeTodayNotifier = [];
 
-ValueNotifier<List<TransactionModel>> incomeYesterdayNotifier =
-    ValueNotifier([]);
+// List<TransactionModel> incomeYesterdayNotifier = [];
 
-ValueNotifier<List<TransactionModel>> expenseTodayNotifier = ValueNotifier([]);
+// List<TransactionModel> expenseTodayNotifier = [];
 
-ValueNotifier<List<TransactionModel>> expenseYesterdayNotifier =
-    ValueNotifier([]);
-ValueNotifier<List<TransactionModel>> lastWeekNotifier = ValueNotifier([]);
+// List<TransactionModel> expenseYesterdayNotifier = [];
+// List<TransactionModel> lastWeekNotifier = [];
 
-ValueNotifier<List<TransactionModel>> incomeLastWeekNotifier =
-    ValueNotifier([]);
+// List<TransactionModel> incomeLastWeekNotifier = [];
 
-ValueNotifier<List<TransactionModel>> expenseLastWeekNotifier =
-    ValueNotifier([]);
+// List<TransactionModel> expenseLastWeekNotifier = [];
 
-ValueNotifier<List<TransactionModel>> lastMonthNotifier = ValueNotifier([]);
+// List<TransactionModel> lastMonthNotifier = [];
 
-ValueNotifier<List<TransactionModel>> incomeLastMonthNotifier =
-    ValueNotifier([]);
+// List<TransactionModel> incomeLastMonthNotifier = [];
 
-ValueNotifier<List<TransactionModel>> expenseLastMonthNotifier =
-    ValueNotifier([]);
+// List<TransactionModel> expenseLastMonthNotifier = [];
 
-String today = DateFormat.yMd().format(
-  DateTime.now(),
-);
-String yesterday = DateFormat.yMd().format(
-  DateTime.now().subtract(
-    const Duration(days: 1),
-  ),
-);
+// String today = DateFormat.yMd().format(
+//   DateTime.now(),
+// );
+// String yesterday = DateFormat.yMd().format(
+//   DateTime.now().subtract(
+//     const Duration(days: 1),
+//   ),
+// );
 
- filterFunction() async {
-  final list = await transactionDB.instance.accessTransactions();
-  overviewNotifier.value.clear();
-  incomeNotifier1.value.clear();
-  expenseNotifier1.value.clear();
-  todayNotifier.value.clear();
-  yesterdayNotifier.value.clear();
-  incomeTodayNotifier.value.clear();
-  incomeYesterdayNotifier.value.clear();
-  expenseTodayNotifier.value.clear();
-  expenseYesterdayNotifier.value.clear();
-  lastWeekNotifier.value.clear();
-  expenseLastWeekNotifier.value.clear();
-  incomeLastWeekNotifier.value.clear();
-  lastMonthNotifier.value.clear();
-  expenseLastMonthNotifier.value.clear();
-  incomeLastMonthNotifier.value.clear();
+// filterFunction(BuildContext context) async {
+//   final list =
+//       await Provider.of<TransactionProviderClass>(context, listen: false)
+//           .accessTransactions();
+//   overviewNotifier.value.clear();
+//   incomeNotifier1.value.clear();
+//   expenseNotifier1.value.clear();
+//   todayNotifier.value.clear();
+//   yesterdayNotifier.value.clear();
+//   incomeTodayNotifier.value.clear();
+//   incomeYesterdayNotifier.value.clear();
+//   expenseTodayNotifier.value.clear();
+//   expenseYesterdayNotifier.value.clear();
+//   lastWeekNotifier.value.clear();
+//   expenseLastWeekNotifier.value.clear();
+//   incomeLastWeekNotifier.value.clear();
+//   lastMonthNotifier.value.clear();
+//   expenseLastMonthNotifier.value.clear();
+//   incomeLastMonthNotifier.value.clear();
 
-  for (var element in list) {
-    if (element.category.type == CategoryType.income) {
-      incomeNotifier1.value.add(element);
-    } else if (element.category.type == CategoryType.expense) {
-      expenseNotifier1.value.add(element);
-    }
+//   for (var element in list) {
+//     if (element.category.type == CategoryType.income) {
+//       incomeNotifier1.value.add(element);
+//     } else if (element.category.type == CategoryType.expense) {
+//       expenseNotifier1.value.add(element);
+//     }
 
-    overviewNotifier.value.add(element);
-  }
+//     overviewNotifier.value.add(element);
+//   }
 
-  for (var element in list) {
-    String elementDate = DateFormat.yMd().format(element.date);
-    if (elementDate == today) {
-      todayNotifier.value.add(element);
-    }
+//   for (var element in list) {
+//     String elementDate = DateFormat.yMd().format(element.date);
+//     if (elementDate == today) {
+//       todayNotifier.value.add(element);
+//     }
 
-    if (elementDate == yesterday) {
-      yesterdayNotifier.value.add(element);
-    }
-    if (element.date.isAfter(
-      DateTime.now().subtract(
-        const Duration(days: 7),
-      ),
-    )) {
-      lastWeekNotifier.value.add(element);
-    }
+//     if (elementDate == yesterday) {
+//       yesterdayNotifier.value.add(element);
+//     }
+//     if (element.date.isAfter(
+//       DateTime.now().subtract(
+//         const Duration(days: 7),
+//       ),
+//     )) {
+//       lastWeekNotifier.value.add(element);
+//     }
 
-    if (element.date.isAfter(
-      DateTime.now().subtract(
-        const Duration(days: 30),
-      ),
-    )) {
-      lastMonthNotifier.value.add(element);
-    }
+//     if (element.date.isAfter(
+//       DateTime.now().subtract(
+//         const Duration(days: 30),
+//       ),
+//     )) {
+//       lastMonthNotifier.value.add(element);
+//     }
 
-    if (elementDate == today && element.type == CategoryType.income) {
-      incomeTodayNotifier.value.add(element);
-    }
+//     if (elementDate == today && element.type == CategoryType.income) {
+//       incomeTodayNotifier.value.add(element);
+//     }
 
-    if (elementDate == yesterday && element.type == CategoryType.income) {
-      incomeYesterdayNotifier.value.add(element);
-    }
+//     if (elementDate == yesterday && element.type == CategoryType.income) {
+//       incomeYesterdayNotifier.value.add(element);
+//     }
 
-    if (elementDate == today && element.type == CategoryType.expense) {
-      expenseTodayNotifier.value.add(element);
-    }
+//     if (elementDate == today && element.type == CategoryType.expense) {
+//       expenseTodayNotifier.value.add(element);
+//     }
 
-    if (elementDate == yesterday && element.type == CategoryType.expense) {
-      expenseYesterdayNotifier.value.add(element);
-    }
-    if (element.date.isAfter(
-          DateTime.now().subtract(
-            const Duration(days: 7),
-          ),
-        ) &&
-        element.type == CategoryType.income) {
-      incomeLastWeekNotifier.value.add(element);
-    }
+//     if (elementDate == yesterday && element.type == CategoryType.expense) {
+//       expenseYesterdayNotifier.value.add(element);
+//     }
+//     if (element.date.isAfter(
+//           DateTime.now().subtract(
+//             const Duration(days: 7),
+//           ),
+//         ) &&
+//         element.type == CategoryType.income) {
+//       incomeLastWeekNotifier.value.add(element);
+//     }
 
-    if (element.date.isAfter(
-          DateTime.now().subtract(
-            const Duration(days: 7),
-          ),
-        ) &&
-        element.type == CategoryType.expense) {
-      expenseLastWeekNotifier.value.add(element);
-    }
+//     if (element.date.isAfter(
+//           DateTime.now().subtract(
+//             const Duration(days: 7),
+//           ),
+//         ) &&
+//         element.type == CategoryType.expense) {
+//       expenseLastWeekNotifier.value.add(element);
+//     }
 
-    if (element.date.isAfter(
-          DateTime.now().subtract(
-            const Duration(days: 30),
-          ),
-        ) &&
-        element.type == CategoryType.income) {
-      incomeLastMonthNotifier.value.add(element);
-    }
+//     if (element.date.isAfter(
+//           DateTime.now().subtract(
+//             const Duration(days: 30),
+//           ),
+//         ) &&
+//         element.type == CategoryType.income) {
+//       incomeLastMonthNotifier.value.add(element);
+//     }
 
-    if (element.date.isAfter(
-          DateTime.now().subtract(
-            const Duration(days: 30),
-          ),
-        ) &&
-        element.type == CategoryType.expense) {
-      expenseLastMonthNotifier.value.add(element);
-    }
-  }
+//     if (element.date.isAfter(
+//           DateTime.now().subtract(
+//             const Duration(days: 30),
+//           ),
+//         ) &&
+//         element.type == CategoryType.expense) {
+//       expenseLastMonthNotifier.value.add(element);
+//     }
+//   }
 
-  overviewNotifier.notifyListeners();
-  todayNotifier.notifyListeners();
-  yesterdayNotifier.notifyListeners();
-  incomeNotifier1.notifyListeners();
-  expenseNotifier1.notifyListeners();
-  incomeTodayNotifier.notifyListeners();
-  incomeYesterdayNotifier.notifyListeners();
-  expenseTodayNotifier.notifyListeners();
-  expenseYesterdayNotifier.notifyListeners();
-  lastWeekNotifier.notifyListeners();
-  incomeLastWeekNotifier.notifyListeners();
-  expenseLastWeekNotifier.notifyListeners();
-  lastMonthNotifier.notifyListeners();
-  incomeLastMonthNotifier.notifyListeners();
-  expenseLastMonthNotifier.notifyListeners();
-}
+//   overviewNotifier.notifyListeners();
+//   todayNotifier.notifyListeners();
+//   yesterdayNotifier.notifyListeners();
+//   incomeNotifier1.notifyListeners();
+//   expenseNotifier1.notifyListeners();
+//   incomeTodayNotifier.notifyListeners();
+//   incomeYesterdayNotifier.notifyListeners();
+//   expenseTodayNotifier.notifyListeners();
+//   expenseYesterdayNotifier.notifyListeners();
+//   lastWeekNotifier.notifyListeners();
+//   incomeLastWeekNotifier.notifyListeners();
+//   expenseLastWeekNotifier.notifyListeners();
+//   lastMonthNotifier.notifyListeners();
+//   incomeLastMonthNotifier.notifyListeners();
+//   expenseLastMonthNotifier.notifyListeners();
+// }

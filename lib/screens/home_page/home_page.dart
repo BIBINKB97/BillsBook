@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:money_management_project/providers/transaction_provider.dart';
 import 'package:money_management_project/screens/home_page/balance/balance.dart';
-import 'package:money_management_project/database/transactions_db/transactions_db.dart';
 import 'package:money_management_project/screens/home_page/recent_transactions/recent.dart';
 import 'package:money_management_project/screens/transaction_list/all_transactions/transaction_list.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    transactionDB.instance.refreshAll();
-    balanceAmount();
+    Provider.of<TransactionProviderClass>(context, listen: false).refreshAll();
+    balanceAmount(context);
 
     return Scaffold(
       body: Column(

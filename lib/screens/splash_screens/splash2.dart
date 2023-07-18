@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:money_management_project/database/chart_db/chart_db.dart';
-import 'package:money_management_project/database/profile_db/profile_db.dart';
+import 'package:money_management_project/providers/chart_provider.dart';
+import 'package:money_management_project/providers/profile_provider.dart';
 import 'package:money_management_project/screens/home_page/bottom_nav/bottom_nav.dart';
+import 'package:provider/provider.dart';
 
 class Splash2 extends StatefulWidget {
   const Splash2({Key? key}) : super(key: key);
@@ -17,8 +18,8 @@ class _Splash2State extends State<Splash2> {
   @override
   void initState() {
     super.initState();
-    getUser();
-    filterFunction();
+    Provider.of<ProfileProviderClass>(context, listen: false).getUser();
+   Provider.of<ChartProviderClass>(context, listen: false).filterFunction(context);
     Timer(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => BottomNav()));

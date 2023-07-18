@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:money_management_project/database/category_db/category_db.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
 import 'package:money_management_project/screens/transaction_list/edit_and_view_details/edit_transaction.dart';
+import 'package:provider/provider.dart';
+
+import '../../../providers/category_provider.dart';
 
 class TransactionDetails extends StatelessWidget {
   final TransactionModel data;
@@ -201,7 +203,9 @@ class TransactionDetails extends StatelessWidget {
                                 ),
                               ),
                               onPressed: () {
-                                CategoryDB.instance.refreshUI();
+                                Provider.of<CategoryProviderClass>(context,
+                                        listen: false)
+                                    .refreshUI();
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) => EditDetails(

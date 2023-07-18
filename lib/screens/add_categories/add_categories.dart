@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:money_management_project/database/category_db/category_db.dart';
+import 'package:money_management_project/providers/category_provider.dart';
 import 'package:money_management_project/screens/add_categories/add_category_popup.dart';
 import 'package:money_management_project/screens/add_categories/expense_category_list.dart';
 import 'package:money_management_project/screens/add_categories/income_category_list.dart';
+import 'package:provider/provider.dart';
 
 class AddCategories extends StatefulWidget {
   const AddCategories({super.key});
@@ -12,11 +13,12 @@ class AddCategories extends StatefulWidget {
 }
 
 class _AddCategoriesState extends State<AddCategories> {
-  CategoryDB categoryDB = CategoryDB();
+  // CategoryDB categoryDB = CategoryDB();
   @override
   void initState() {
     super.initState();
-    categoryDB.refreshUI();
+    // categoryDB.refreshUI();
+    Provider.of<CategoryProviderClass>(context, listen: false).refreshUI();
   }
 
   @override

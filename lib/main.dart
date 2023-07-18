@@ -4,8 +4,13 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:money_management_project/model/category_model/category_model.dart';
 import 'package:money_management_project/model/profile_model/user_model.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
+import 'package:money_management_project/providers/category_provider.dart';
+import 'package:money_management_project/providers/chart_provider.dart';
+import 'package:money_management_project/providers/profile_provider.dart';
+import 'package:money_management_project/providers/transaction_provider.dart';
 import 'package:money_management_project/screens/splash_screens/splash1.dart';
 import 'package:money_management_project/screens/splash_screens/splash2.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
@@ -36,14 +41,24 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   final bool hasSeenSplash;
-   const MyApp(this.hasSeenSplash, {super.key});
+  const MyApp(this.hasSeenSplash, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.purple),
-      debugShowCheckedModeBanner: false,
-      home: hasSeenSplash ? Splash2() : Splash1(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CategoryProviderClass()),
+        ChangeNotifierProvider(create: (context) => TransactionProviderClass()),
+        ChangeNotifierProvider(create: (context) => ProfileProviderClass()),
+        ChangeNotifierProvider(
+          create: (context) => ChartProviderClass(),
+        )
+      ],
+      child: MaterialApp(
+        theme: ThemeData(primarySwatch: Colors.purple),
+        debugShowCheckedModeBanner: false,
+        home: hasSeenSplash ? Splash2() : Splash1(),
+      ),
     );
   }
 }

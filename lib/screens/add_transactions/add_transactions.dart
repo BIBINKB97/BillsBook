@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:money_management_project/database/category_db/category_db.dart';
-import 'package:money_management_project/database/transactions_db/transactions_db.dart';
 import 'package:money_management_project/model/category_model/category_model.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
+import 'package:money_management_project/providers/category_provider.dart';
+import 'package:money_management_project/providers/transaction_provider.dart';
 import 'package:money_management_project/screens/add_categories/add_categories.dart';
 import 'package:intl/intl.dart';
 import 'package:money_management_project/screens/home_page/bottom_nav/bottom_nav.dart';
+import 'package:provider/provider.dart';
 
 class AddTransaction extends StatefulWidget {
   const AddTransaction({super.key});
@@ -15,18 +16,12 @@ class AddTransaction extends StatefulWidget {
 }
 
 class _AddTransactionState extends State<AddTransaction> {
-  DateTime? _selectedDate;
-  CategoryType? _selectedCategorytype;
-  CategoryModel? _selectedCategoryModel;
-
-  String? _categoryID;
-
   final _amountTextEditingController = TextEditingController();
   final _descriptionTextEditingController = TextEditingController();
-  CategoryDB categoryDB = CategoryDB();
 
   void inistate() {
-    _selectedCategorytype = CategoryType.income;
+    Provider.of<CategoryProviderClass>(context, listen: false)
+        .selectedCategorytype = CategoryType.income;
     super.initState();
   }
 
@@ -34,8 +29,9 @@ class _AddTransactionState extends State<AddTransaction> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    transactionDB.instance.refreshAll();
-    CategoryDB.instance.refreshUI();
+    Provider.of<TransactionProviderClass>(context, listen: false).refreshAll();
+    Provider.of<CategoryProviderClass>(context, listen: false).refreshUI();
+  
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -110,182 +106,180 @@ class _AddTransactionState extends State<AddTransaction> {
               ),
             ),
           ),
-          Row(
-            children: [
-              SizedBox(
-                width: width * 0.116,
-              ),
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    _selectedCategorytype = CategoryType.income;
-                    _categoryID = null;
-                  });
-                },
-                child: Container(
-                  height: height * 0.070,
-                  width: width * 0.35,
-                  decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Row(
-                    children: [
-                      Radio(
-                          activeColor: Colors.white,
-                          value: CategoryType.income,
-                          groupValue: _selectedCategorytype,
-                          onChanged: (newValue) {
-                            setState(() {
-                              _selectedCategorytype = CategoryType.income;
-                              _categoryID = null;
-                            });
-                          }),
-                      Text(
-                        "Income",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: width * 0.055,
-                            fontWeight: FontWeight.w500),
-                      )
-                    ],
+          Consumer<CategoryProviderClass>(
+              builder: (context, categoryProviderClass, _) {
+            return Row(
+              children: [
+                SizedBox(
+                  width: width * 0.116,
+                ),
+                InkWell(
+                  onTap: () {
+                    categoryProviderClass.radioIncome();
+                  },
+                  child: Container(
+                    height: height * 0.070,
+                    width: width * 0.35,
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Row(
+                      children: [
+                        Radio(
+                            activeColor: Colors.white,
+                            value: CategoryType.income,
+                            groupValue:
+                                categoryProviderClass.selectedCategorytype,
+                            onChanged: (newValue) {
+                              categoryProviderClass.radioIncome();
+                            }),
+                        Text(
+                          "Income",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: width * 0.055,
+                              fontWeight: FontWeight.w500),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: width * 0.059,
-              ),
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    _selectedCategorytype = CategoryType.expense;
-                    _categoryID = null;
-                  });
-                },
-                child: Container(
-                  height: height * 0.070,
-                  width: width * 0.35,
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Row(
-                    children: [
-                      Radio(
-                          activeColor: Colors.white,
-                          value: CategoryType.expense,
-                          groupValue: _selectedCategorytype,
-                          onChanged: (newValue) {
-                            setState(() {
-                              _selectedCategorytype = CategoryType.expense;
-                              _categoryID = null;
-                            });
-                          }),
-                      Text(
-                        "Expense",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: width * 0.055,
-                            fontWeight: FontWeight.w500),
-                      )
-                    ],
+                SizedBox(
+                  width: width * 0.059,
+                ),
+                InkWell(
+                  onTap: () {
+                    categoryProviderClass.radioExpence();
+                  },
+                  child: Container(
+                    height: height * 0.070,
+                    width: width * 0.35,
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Row(
+                      children: [
+                        Radio(
+                            activeColor: Colors.white,
+                            value: CategoryType.expense,
+                            groupValue:
+                                categoryProviderClass.selectedCategorytype,
+                            onChanged: (newValue) {
+                              categoryProviderClass.radioExpence();
+                            }),
+                        Text(
+                          "Expense",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: width * 0.055,
+                              fontWeight: FontWeight.w500),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            );
+          }),
           SizedBox(
             height: height * 0.03,
           ),
-          Row(
-            children: [
-              SizedBox(
-                width: width * 0.06,
-              ),
-              Container(
-                height: height * 0.075,
-                width: width * 0.415,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(color: Colors.grey, width: width * 0.0025),
+          Consumer<CategoryProviderClass>(
+              builder: (context, categoryProviderClass, _) {
+            return Row(
+              children: [
+                SizedBox(
+                  width: width * 0.06,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: DropdownButton<String>(
-                    underline: Container(),
-                    hint: Text(
-                      'Select Category',
-                      style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: width * 0.051,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    value: _categoryID,
-                    items: (_selectedCategorytype == CategoryType.income
-                            ? CategoryDB().incomeCategoryListListner
-                            : CategoryDB().expenseCategoryListListner)
-                        .value
-                        .map((e) {
-                      return DropdownMenuItem(
-                        value: e.id,
-                        child: Text(
-                          e.name,
-                          style: TextStyle(
-                              color: Colors.black54,
-                              fontSize: width * 0.052,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        onTap: () {
-                          _selectedCategoryModel = e;
-                        },
-                      );
-                    }).toList(),
-                    onChanged: (selectedValue) {
-                      setState(() {
-                        _categoryID = selectedValue;
-                      });
-                    },
+                Container(
+                  height: height * 0.075,
+                  width: width * 0.415,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    border:
+                        Border.all(color: Colors.grey, width: width * 0.0025),
                   ),
-                ),
-              ),
-              SizedBox(
-                width: width * 0.040,
-              ),
-              Container(
-                height: height * 0.075,
-                width: width * 0.415,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1.2,
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.playlist_add_circle,
-                        size: 25,
-                        color: Color.fromARGB(150, 151, 52, 184),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: DropdownButton<String>(
+                      underline: Container(),
+                      hint: Text(
+                        'Select Category',
+                        style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: width * 0.051,
+                            fontWeight: FontWeight.w600),
                       ),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => AddCategories()));
-                          },
+                      value: Provider.of<CategoryProviderClass>(context,
+                              listen: false)
+                          .categoryID,
+                      items: (categoryProviderClass.selectedCategorytype ==
+                                  CategoryType.income
+                              ? categoryProviderClass.incomeCategoryList
+                              : categoryProviderClass.expenseCategoryList)
+                          .map((e) {
+                        return DropdownMenuItem(
+                          value: e.id,
                           child: Text(
-                            'Add  Category',
+                            e.name,
                             style: TextStyle(
                                 color: Colors.black54,
                                 fontSize: width * 0.052,
                                 fontWeight: FontWeight.w600),
-                          )),
-                    ],
+                          ),
+                          onTap: () {
+                            categoryProviderClass.selectCategoryOntap(e);
+                          },
+                        );
+                      }).toList(),
+                      onChanged: (selectedValue) {
+                        categoryProviderClass
+                            .selectCategoryOnchanged(selectedValue!);
+                      },
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+                SizedBox(
+                  width: width * 0.040,
+                ),
+                Container(
+                  height: height * 0.075,
+                  width: width * 0.415,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1.2,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.playlist_add_circle,
+                          size: 25,
+                          color: Color.fromARGB(150, 151, 52, 184),
+                        ),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => AddCategories()));
+                            },
+                            child: Text(
+                              'Add  Category',
+                              style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: width * 0.052,
+                                  fontWeight: FontWeight.w600),
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }),
           SizedBox(
             height: height * 0.03,
           ),
@@ -321,35 +315,40 @@ class _AddTransactionState extends State<AddTransaction> {
                     width: 1.0,
                   ),
                 ),
-                child: TextButton.icon(
-                    onPressed: () async {
-                      final selectedDateTemp = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now().subtract(Duration(days: 30)),
-                        lastDate: DateTime.now(),
-                      );
-                      if (selectedDateTemp == null) {
-                        return;
-                      } else {
-                        setState(() {
-                          _selectedDate = selectedDateTemp;
-                        });
-                      }
-                    },
-                    icon: Icon(
-                      Icons.calendar_month,
-                      color: Colors.black54,
-                    ),
-                    label: Text(
-                      _selectedDate == null
-                          ? 'pick a date'
-                          : DateFormat("dd-MMMM-yyyy").format(_selectedDate!),
-                      style: TextStyle(
+                child: Builder(builder: (context) {
+                  return Consumer<CategoryProviderClass>(
+                      builder: (context, categoryproviderclass, _) {
+                    return TextButton.icon(
+                        onPressed: () async {
+                          final selectedDateTemp = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate:
+                                DateTime.now().subtract(Duration(days: 30)),
+                            lastDate: DateTime.now(),
+                          );
+                          if (selectedDateTemp == null) {
+                            return;
+                          } else {
+                            categoryproviderclass.pickDate(selectedDateTemp);
+                          }
+                        },
+                        icon: Icon(
+                          Icons.calendar_month,
                           color: Colors.black54,
-                          fontSize: width * 0.052,
-                          fontWeight: FontWeight.w600),
-                    )),
+                        ),
+                        label: Text(
+                          categoryproviderclass.selectedDate == null
+                              ? 'pick a date'
+                              : DateFormat("dd-MMMM-yyyy")
+                                  .format(categoryproviderclass.selectedDate!),
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontSize: width * 0.052,
+                              fontWeight: FontWeight.w600),
+                        ));
+                  });
+                }),
               ),
             ],
           ),
@@ -397,7 +396,8 @@ class _AddTransactionState extends State<AddTransaction> {
       );
       return;
     }
-    if (_categoryID == null) {
+    if (Provider.of<CategoryProviderClass>(context, listen: false).categoryID ==
+        null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
             content: Center(
@@ -426,10 +426,14 @@ class _AddTransactionState extends State<AddTransaction> {
       return;
     }
 
-    if (_selectedCategoryModel == null) {
+    if (Provider.of<CategoryProviderClass>(context, listen: false)
+            .selectedCategoryModel ==
+        null) {
       return;
     }
-    if (_selectedDate == null) {
+    if (Provider.of<CategoryProviderClass>(context, listen: false)
+            .selectedDate ==
+        null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
             content: Center(
@@ -461,13 +465,17 @@ class _AddTransactionState extends State<AddTransaction> {
 
     final model = TransactionModel(
         amount: parsedAmount,
-        type: _selectedCategorytype!,
-        category: _selectedCategoryModel!,
+        type: Provider.of<CategoryProviderClass>(context, listen: false)
+            .selectedCategorytype!,
+        category: Provider.of<CategoryProviderClass>(context, listen: false)
+            .selectedCategoryModel!,
         description: descriptionText,
-        date: _selectedDate!);
+        date: Provider.of<CategoryProviderClass>(context, listen: false)
+            .selectedDate!);
 
-    await transactionDB.instance.addTransaction(model);
-    transactionDB.instance.refreshAll();
+    await Provider.of<TransactionProviderClass>(context, listen: false)
+        .addTransaction(model);
+    Provider.of<TransactionProviderClass>(context, listen: false).refreshAll();
     // ignore: use_build_context_synchronously
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => BottomNav(),

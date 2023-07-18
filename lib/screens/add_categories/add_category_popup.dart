@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:money_management_project/database/category_db/category_db.dart';
 import 'package:money_management_project/model/category_model/category_model.dart';
+import 'package:money_management_project/providers/category_provider.dart';
+import 'package:provider/provider.dart';
 
 ValueNotifier<CategoryType> selectedCategoryNotifier =
     ValueNotifier(CategoryType.income);
@@ -55,7 +56,9 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                     name: name,
                     type: type,
                   );
-                  CategoryDB.instance.insertCategory(category);
+                  // CategoryDB.instance.insertCategory(category);
+                  Provider.of<CategoryProviderClass>(context, listen: false)
+                      .insertCategory(category);
                   Navigator.of(ctx).pop();
                 },
                 style: ButtonStyle(
@@ -89,7 +92,6 @@ class RadioButton extends StatelessWidget {
                       return;
                     }
                     selectedCategoryNotifier.value = value;
-                    selectedCategoryNotifier.notifyListeners();
                   });
             }),
         Text(title),
