@@ -14,7 +14,6 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
-  
   int selectedIndex = 0;
   final screens = [
     HomePage(),
@@ -27,35 +26,35 @@ class _BottomNavState extends State<BottomNav> {
     BottomNavigationBarItem(
       icon: Icon(
         IconlyBold.home,
-        size: 30,
+        size: 28,
       ),
       label: 'Home',
     ),
     BottomNavigationBarItem(
       icon: Icon(
         Icons.compare_arrows,
-        size: 37,
+        size: 36,
       ),
       label: 'Transactions',
     ),
     BottomNavigationBarItem(
       icon: Icon(
         IconlyBold.plus,
-        size: 32,
+        size: 30,
       ),
       label: 'Add Transaction',
     ),
     BottomNavigationBarItem(
       icon: Icon(
         IconlyBold.graph,
-        size: 30,
+        size: 28,
       ),
       label: 'Statitics',
     ),
     BottomNavigationBarItem(
       icon: Icon(
         IconlyBold.profile,
-        size: 30,
+        size: 28,
       ),
       label: 'Profile',
     ),
@@ -65,7 +64,6 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[selectedIndex],
-      
       bottomNavigationBar: SizedBox(
         height: 90,
         child: BottomNavigationBar(
@@ -75,9 +73,7 @@ class _BottomNavState extends State<BottomNav> {
           selectedItemColor: Color.fromARGB(210, 151, 52, 184),
           backgroundColor: Colors.black,
           items: _bottomNavbarItems,
-          onTap: (index) => setState((
-            
-          ) => selectedIndex = index),
+          onTap: (index) => setState(() => selectedIndex = index),
         ),
       ),
     );

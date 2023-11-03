@@ -6,8 +6,6 @@ import 'package:money_management_project/view/home_page/recent_transactions/rece
 import 'package:money_management_project/view/transaction_list/all_transactions/transaction_list.dart';
 import 'package:provider/provider.dart';
 
-
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -49,7 +47,7 @@ class HomePage extends StatelessWidget {
                       DateFormat('EEEE d\nMMMM').format(DateTime.now()),
                       style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.06,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ),
                     ),
@@ -74,7 +72,7 @@ class HomePage extends StatelessWidget {
                               style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.07,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
                             SizedBox(
@@ -85,9 +83,9 @@ class HomePage extends StatelessWidget {
                               '₹ ${totalNotifier.value.toString()}',
                               style: TextStyle(
                                 fontSize:
-                                    MediaQuery.of(context).size.width * 0.09,
+                                    MediaQuery.of(context).size.width * 0.088,
                                 color: Colors.black,
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ],

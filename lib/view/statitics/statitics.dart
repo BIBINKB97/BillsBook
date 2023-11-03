@@ -108,7 +108,7 @@ class _FinancialReportState extends State<FinancialReport>
                         ),
                         child: DropdownButton<String>(
                           style: TextStyle(
-                              fontSize: width * 0.052,
+                              fontSize: width * 0.045,
                               color: Colors.black,
                               fontWeight: FontWeight.w500),
                           isExpanded: true,
@@ -143,7 +143,7 @@ class _FinancialReportState extends State<FinancialReport>
                   child: TabBar(
                     unselectedLabelStyle: TextStyle(color: Colors.grey),
                     labelStyle: TextStyle(
-                        fontSize: width * 0.052, fontWeight: FontWeight.w500),
+                        fontSize: width * 0.045, fontWeight: FontWeight.w500),
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       color: Colors.white,
