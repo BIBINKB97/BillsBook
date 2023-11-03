@@ -2,12 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:money_management_project/providers/profile_provider.dart';
-import 'package:money_management_project/screens/profile_page/Edit_profile.dart';
-import 'package:money_management_project/screens/profile_page/about.dart';
-import 'package:money_management_project/screens/profile_page/my_account.dart';
-import 'package:money_management_project/screens/profile_page/privacy_policy.dart';
-import 'package:money_management_project/screens/profile_page/reset_app.dart';
-import 'package:money_management_project/screens/profile_page/terms_and_conditions.dart';
+import 'package:money_management_project/view/profile_page/Edit_profile.dart';
+import 'package:money_management_project/view/profile_page/about.dart';
+import 'package:money_management_project/view/profile_page/my_account.dart';
+import 'package:money_management_project/view/profile_page/privacy_policy.dart';
+import 'package:money_management_project/view/profile_page/reset_app.dart';
+import 'package:money_management_project/view/profile_page/terms_and_conditions.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {

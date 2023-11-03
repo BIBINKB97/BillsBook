@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:money_management_project/providers/transaction_provider.dart';
-import 'package:money_management_project/screens/home_page/balance/balance.dart';
-import 'package:money_management_project/screens/home_page/recent_transactions/recent.dart';
-import 'package:money_management_project/screens/transaction_list/all_transactions/transaction_list.dart';
+import 'package:money_management_project/view/home_page/balance/balance.dart';
+import 'package:money_management_project/view/home_page/recent_transactions/recent.dart';
+import 'package:money_management_project/view/transaction_list/all_transactions/transaction_list.dart';
 import 'package:provider/provider.dart';
+
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,6 +14,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<TransactionProviderClass>(context, listen: false).refreshAll();
+
     balanceAmount(context);
 
     return Scaffold(

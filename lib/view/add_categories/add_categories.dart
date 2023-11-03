@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:money_management_project/providers/category_provider.dart';
-import 'package:money_management_project/screens/add_categories/add_category_popup.dart';
-import 'package:money_management_project/screens/add_categories/expense_category_list.dart';
-import 'package:money_management_project/screens/add_categories/income_category_list.dart';
+import 'package:money_management_project/view/add_categories/add_category_popup.dart';
+import 'package:money_management_project/view/add_categories/expense_category_list.dart';
+import 'package:money_management_project/view/add_categories/income_category_list.dart';
 import 'package:provider/provider.dart';
 
 class AddCategories extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:money_management_project/providers/chart_provider.dart';
-import 'package:money_management_project/screens/home_page/balance/balance.dart';
-import 'package:money_management_project/screens/statitics/model.dart';
+import 'package:money_management_project/view/home_page/balance/balance.dart';
+import 'package:money_management_project/view/statitics/model.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 

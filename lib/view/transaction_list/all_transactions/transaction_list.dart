@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:money_management_project/model/category_model/category_model.dart';
 import 'package:money_management_project/providers/category_provider.dart';
 import 'package:money_management_project/providers/transaction_provider.dart';
-import 'package:money_management_project/screens/transaction_list/edit_and_view_details/detailed_view_of_transaction.dart';
+import 'package:money_management_project/view/transaction_list/edit_and_view_details/detailed_view_of_transaction.dart';
 import 'package:provider/provider.dart';
 
 import '../../../model/transaction_model/transaction_model.dart';

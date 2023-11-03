@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:money_management_project/screens/add_transactions/add_transactions.dart';
-import 'package:money_management_project/screens/home_page/home_page.dart';
-import 'package:money_management_project/screens/profile_page/profile.dart';
-import 'package:money_management_project/screens/statitics/statitics.dart';
-import 'package:money_management_project/screens/transaction_list/all_transactions/transaction_list.dart';
+import 'package:money_management_project/view/add_transactions/add_transactions.dart';
+import 'package:money_management_project/view/home_page/home_page.dart';
+import 'package:money_management_project/view/profile_page/profile.dart';
+import 'package:money_management_project/view/statitics/statitics.dart';
+import 'package:money_management_project/view/transaction_list/all_transactions/transaction_list.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -14,6 +14,7 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
+  
   int selectedIndex = 0;
   final screens = [
     HomePage(),
@@ -64,6 +65,7 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[selectedIndex],
+      
       bottomNavigationBar: SizedBox(
         height: 90,
         child: BottomNavigationBar(
@@ -73,7 +75,9 @@ class _BottomNavState extends State<BottomNav> {
           selectedItemColor: Color.fromARGB(210, 151, 52, 184),
           backgroundColor: Colors.black,
           items: _bottomNavbarItems,
-          onTap: (index) => setState(() => selectedIndex = index),
+          onTap: (index) => setState((
+            
+          ) => selectedIndex = index),
         ),
       ),
     );

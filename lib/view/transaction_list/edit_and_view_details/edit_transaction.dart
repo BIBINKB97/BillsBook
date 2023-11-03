@@ -3,9 +3,9 @@ import 'package:money_management_project/model/category_model/category_model.dar
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
 import 'package:money_management_project/providers/category_provider.dart';
 import 'package:money_management_project/providers/transaction_provider.dart';
-import 'package:money_management_project/screens/add_categories/add_categories.dart';
+import 'package:money_management_project/view/add_categories/add_categories.dart';
 import 'package:intl/intl.dart';
-import 'package:money_management_project/screens/home_page/bottom_nav/bottom_nav.dart';
+import 'package:money_management_project/view/home_page/bottom_nav/bottom_nav.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable

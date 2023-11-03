@@ -25,10 +25,10 @@ class CategoryProviderClass with ChangeNotifier {
 
   Future<void> refreshUI() async {
     final allCategories = await getCategories();
+    
     incomeCategoryList.clear();
     expenseCategoryList.clear();
     notifyListeners();
-
     await Future.forEach(allCategories, (CategoryModel category) {
       if (category.type == CategoryType.income) {
         incomeCategoryList.add(category);
@@ -44,7 +44,6 @@ class CategoryProviderClass with ChangeNotifier {
     final categoryDB = await Hive.openBox<CategoryModel>('category');
     await categoryDB.delete(categoryID);
     refreshUI();
-    
   }
 
   void radioIncome() {

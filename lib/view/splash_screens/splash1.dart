@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:money_management_project/screens/splash_screens/splash2.dart';
+import 'package:money_management_project/view/splash_screens/splash2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Splash1 extends StatefulWidget {

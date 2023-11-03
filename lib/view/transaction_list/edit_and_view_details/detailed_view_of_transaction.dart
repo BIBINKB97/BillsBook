@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
-import 'package:money_management_project/screens/transaction_list/edit_and_view_details/edit_transaction.dart';
+import 'package:money_management_project/view/transaction_list/edit_and_view_details/edit_transaction.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/category_provider.dart';

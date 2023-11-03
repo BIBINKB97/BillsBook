@@ -6,8 +6,8 @@ import 'package:money_management_project/model/category_model/category_model.dar
 import 'package:money_management_project/model/profile_model/user_model.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
 import 'package:money_management_project/providers/profile_provider.dart';
-import 'package:money_management_project/screens/home_page/balance/balance.dart';
-import 'package:money_management_project/screens/splash_screens/splash1.dart';
+import 'package:money_management_project/view/home_page/balance/balance.dart';
+import 'package:money_management_project/view/splash_screens/splash1.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -8,8 +8,8 @@ import 'package:money_management_project/providers/category_provider.dart';
 import 'package:money_management_project/providers/chart_provider.dart';
 import 'package:money_management_project/providers/profile_provider.dart';
 import 'package:money_management_project/providers/transaction_provider.dart';
-import 'package:money_management_project/screens/splash_screens/splash1.dart';
-import 'package:money_management_project/screens/splash_screens/splash2.dart';
+import 'package:money_management_project/view/splash_screens/splash1.dart';
+import 'package:money_management_project/view/splash_screens/splash2.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

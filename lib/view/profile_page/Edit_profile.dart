@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:money_management_project/model/profile_model/user_model.dart';
 import 'package:money_management_project/providers/profile_provider.dart';
-import 'package:money_management_project/screens/home_page/bottom_nav/bottom_nav.dart';
+import 'package:money_management_project/view/home_page/bottom_nav/bottom_nav.dart';
 import 'package:provider/provider.dart';
 
 class EditProfile extends StatefulWidget {

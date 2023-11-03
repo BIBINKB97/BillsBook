@@ -3,9 +3,9 @@ import 'package:money_management_project/model/category_model/category_model.dar
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
 import 'package:money_management_project/providers/category_provider.dart';
 import 'package:money_management_project/providers/transaction_provider.dart';
-import 'package:money_management_project/screens/add_categories/add_categories.dart';
+import 'package:money_management_project/view/add_categories/add_categories.dart';
 import 'package:intl/intl.dart';
-import 'package:money_management_project/screens/home_page/bottom_nav/bottom_nav.dart';
+import 'package:money_management_project/view/home_page/bottom_nav/bottom_nav.dart';
 import 'package:provider/provider.dart';
 
 class AddTransaction extends StatefulWidget {
@@ -30,8 +30,7 @@ class _AddTransactionState extends State<AddTransaction> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     Provider.of<TransactionProviderClass>(context, listen: false).refreshAll();
-    Provider.of<CategoryProviderClass>(context, listen: false).refreshUI();
-  
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -476,6 +475,7 @@ class _AddTransactionState extends State<AddTransaction> {
     await Provider.of<TransactionProviderClass>(context, listen: false)
         .addTransaction(model);
     Provider.of<TransactionProviderClass>(context, listen: false).refreshAll();
+
     // ignore: use_build_context_synchronously
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => BottomNav(),
