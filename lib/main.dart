@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(primarySwatch: Colors.purple),
         debugShowCheckedModeBanner: false,
-        home: hasSeenSplash ? Splash2() : Splash1(),
+        home: hasSeenSplash ? Splash2() : Splash1(),   
       ),
     );
   }
