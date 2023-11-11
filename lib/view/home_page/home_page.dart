@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:money_management_project/providers/transaction_provider.dart';
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                     child: Text(
                       DateFormat('EEEE d\nMMMM').format(DateTime.now()),
                       style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.06,
+                        fontSize: MediaQuery.of(context).size.width * 0.045,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ),
@@ -83,7 +84,7 @@ class HomePage extends StatelessWidget {
                               '₹ ${totalNotifier.value.toString()}',
                               style: TextStyle(
                                 fontSize:
-                                    MediaQuery.of(context).size.width * 0.088,
+                                    MediaQuery.of(context).size.width * 0.078,
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -101,165 +102,175 @@ class HomePage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          height: MediaQuery.of(context).size.height * 0.1,
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(30),
+                        SlideInLeft(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: MediaQuery.of(context).size.height * 0.1,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.029,
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.12,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.056,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                  color: Colors.white,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.029,
                                 ),
-                                child: Icon(
-                                  Icons.unarchive,
-                                  color: Colors.green,
-                                  size:
-                                      MediaQuery.of(context).size.width * 0.11,
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.12,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.056,
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                    color: Colors.white,
+                                  ),
+                                  child: Icon(
+                                    Icons.unarchive,
+                                    color: Colors.green,
+                                    size: MediaQuery.of(context).size.width *
+                                        0.11,
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 8),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Income',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize:
-                                            MediaQuery.of(context).size.width *
-                                                0.05,
-                                      ),
-                                    ),
-                                    ValueListenableBuilder(
-                                      valueListenable: incomeNotifier,
-                                      builder: (context, value, child) {
-                                        return SizedBox(
-                                          width: MediaQuery.of(context)
+                                Padding(
+                                  padding: EdgeInsets.only(left: 8),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Income',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              0.23,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.025,
-                                          child: Text(
-                                            '₹${incomeNotifier.value.toString()}',
-                                            style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.06,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w600,
+                                              0.05,
+                                        ),
+                                      ),
+                                      ValueListenableBuilder(
+                                        valueListenable: incomeNotifier,
+                                        builder: (context, value, child) {
+                                          return SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.23,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.025,
+                                            child: Text(
+                                              '₹${incomeNotifier.value.toString()}',
+                                              style: TextStyle(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.05,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
                                             ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.06,
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          height: MediaQuery.of(context).size.height * 0.1,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(30),
+                        SlideInRight(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: MediaQuery.of(context).size.height * 0.1,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.029,
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.12,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.056,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                  color: Colors.white,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.029,
                                 ),
-                                child: Icon(
-                                  Icons.archive,
-                                  color: Colors.red,
-                                  size:
-                                      MediaQuery.of(context).size.width * 0.11,
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.12,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.056,
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                    color: Colors.white,
+                                  ),
+                                  child: Icon(
+                                    Icons.archive,
+                                    color: Colors.red,
+                                    size: MediaQuery.of(context).size.width *
+                                        0.11,
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 8),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Expense',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize:
-                                            MediaQuery.of(context).size.width *
-                                                0.05,
-                                      ),
-                                    ),
-                                    ValueListenableBuilder(
-                                      valueListenable: expenseNotifier,
-                                      builder: (context, value, child) {
-                                        return SizedBox(
-                                          width: MediaQuery.of(context)
+                                Padding(
+                                  padding: EdgeInsets.only(left: 8),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Expense',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              0.23,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.025,
-                                          child: Text(
-                                            '₹${expenseNotifier.value.toString()}',
-                                            style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.06,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w600,
+                                              0.05,
+                                        ),
+                                      ),
+                                      ValueListenableBuilder(
+                                        valueListenable: expenseNotifier,
+                                        builder: (context, value, child) {
+                                          return SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.23,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.025,
+                                            child: Text(
+                                              '₹${expenseNotifier.value.toString()}',
+                                              style: TextStyle(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.05,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
                                             ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -303,7 +314,7 @@ class HomePage extends StatelessWidget {
                 'View All',
                 style: TextStyle(
                   color: Color.fromARGB(210, 151, 52, 184),
-                  fontSize: MediaQuery.of(context).size.width * 0.05,
+                  fontSize: MediaQuery.of(context).size.width * 0.045,
                   fontWeight: FontWeight.w600,
                 ),
               ),

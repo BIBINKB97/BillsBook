@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -17,66 +18,69 @@ class _RecentState extends State<Recent> {
   @override
   Widget build(BuildContext context) {
     return Consumer<TransactionProviderClass>(
-      builder:
-          (context, transactionProviderClass,_) {
+      builder: (context, transactionProviderClass, _) {
         return Expanded(
             child: transactionProviderClass.transactionList.isNotEmpty
                 ? ListView.separated(
                     padding: const EdgeInsets.all(10),
                     itemBuilder: (context, index) {
-                      final value = transactionProviderClass.transactionList[index];
-                      return Card(
-                        elevation: 0,
-                        color: Color.fromARGB(255, 233, 233, 233),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => TransactionDetails(
-                                      data: value,
-                                    )));
-                          },
-                          leading: CircleAvatar(
-                            radius: 25,
-                            backgroundColor: value.type == CategoryType.income
-                                ? Colors.green
-                                : Colors.red,
-                            child: value.type == CategoryType.income
-                                ? Icon(
-                                    Icons.arrow_upward,
-                                    size: 28,
-                                    color: Colors.white,
-                                  )
-                                : Icon(
-                                    Icons.arrow_downward,
-                                    size: 28,
-                                    color: Colors.white,
-                                  ),
-                          ),
-                          title: Text(
-                            value.category.name,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          subtitle: Text(
-                            parseDate(value.date),
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          trailing: Text(
-                            "₹ ${value.amount}",
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w500,
-                              color: value.type == CategoryType.income
+                      final value =
+                          transactionProviderClass.transactionList[index];
+                      return SlideInUp(
+                        duration: Duration(milliseconds: 300),
+                        child: Card(
+                          elevation: 0,
+                          color: Color.fromARGB(255, 233, 233, 233),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => TransactionDetails(
+                                        data: value,
+                                      )));
+                            },
+                            leading: CircleAvatar(
+                              radius: 25,
+                              backgroundColor: value.type == CategoryType.income
                                   ? Colors.green
                                   : Colors.red,
+                              child: value.type == CategoryType.income
+                                  ? Icon(
+                                      Icons.arrow_upward,
+                                      size: 28,
+                                      color: Colors.white,
+                                    )
+                                  : Icon(
+                                      Icons.arrow_downward,
+                                      size: 28,
+                                      color: Colors.white,
+                                    ),
+                            ),
+                            title: Text(
+                              value.category.name,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            subtitle: Text(
+                              parseDate(value.date),
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            trailing: Text(
+                              "₹ ${value.amount}",
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w500,
+                                color: value.type == CategoryType.income
+                                    ? Colors.green
+                                    : Colors.red,
+                              ),
                             ),
                           ),
                         ),
@@ -85,7 +89,10 @@ class _RecentState extends State<Recent> {
                     separatorBuilder: (context, index) {
                       return SizedBox();
                     },
-                    itemCount: transactionProviderClass.transactionList.length > 4 ? 4 : transactionProviderClass.transactionList.length,
+                    itemCount:
+                        transactionProviderClass.transactionList.length > 4
+                            ? 4
+                            : transactionProviderClass.transactionList.length,
                   )
                 : Center(
                     child: Column(
