@@ -103,6 +103,7 @@ class HomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SlideInLeft(
+                          duration: Duration(milliseconds: 300),
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.4,
                             height: MediaQuery.of(context).size.height * 0.1,
@@ -190,6 +191,7 @@ class HomePage extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.06,
                         ),
                         SlideInRight(
+                          duration: Duration(milliseconds: 300),
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.4,
                             height: MediaQuery.of(context).size.height * 0.1,

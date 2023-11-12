@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
@@ -285,41 +286,44 @@ class _TransactionListState extends State<TransactionList> {
                                   )
                                 ],
                               ),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20))),
-                                child: ListTile(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                TransactionDetails(
-                                                  data: value,
-                                                )));
-                                  },
-                                  title: Text(
-                                    value.category.name,
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
+                              child: SlideInUp(
+                                duration: Duration(milliseconds: 400),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: ListTile(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  TransactionDetails(
+                                                    data: value,
+                                                  )));
+                                    },
+                                    title: Text(
+                                      value.category.name,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
-                                  ),
-                                  subtitle: Text(
-                                    parseDate(value.date),
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
+                                    subtitle: Text(
+                                      parseDate(value.date),
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                  trailing: Text(
-                                    "₹ ${value.amount}",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      color: value.type == CategoryType.income
-                                          ? Colors.green
-                                          : Colors.red,
+                                    trailing: Text(
+                                      "₹ ${value.amount}",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500,
+                                        color: value.type == CategoryType.income
+                                            ? Colors.green
+                                            : Colors.red,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -330,7 +334,7 @@ class _TransactionListState extends State<TransactionList> {
                       },
                       separatorBuilder: (context, index) {
                         return SizedBox(
-                          height: 10,
+                          height: 0,
                         );
                       },
                       itemCount:
