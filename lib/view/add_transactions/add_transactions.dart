@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, duplicate_ignore
+
 import 'package:flutter/material.dart';
 import 'package:money_management_project/model/category_model/category_model.dart';
 import 'package:money_management_project/model/transaction_model/transaction_model.dart';
